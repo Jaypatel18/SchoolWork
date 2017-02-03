@@ -1,0 +1,8 @@
+vendor_name = ModelSim
+source_file = 1, /home/liulige/CPRE281/fProj/Y0/Y0.v
+source_file = 1, /home/liulige/CPRE281/fProj/Y0/db/Y0.cbx.xml
+design_name = Y0
+instance = comp, \y0~I\, y0, Y0, 1
+instance = comp, \S~I\, S, Y0, 1
+instance = comp, \_Y0~0\, _Y0~0, Y0, 1
+instance = comp, \_Y0~I\, _Y0, Y0, 1

@@ -1,0 +1,101 @@
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class GuessingGame
+{
+  /**
+   * The secret number to be guessed.
+   */
+  private int secretNumber;
+  
+  /**
+   * The maximum of the range of numbers to be guessed.
+   */
+  private int maxNumber;
+  
+  /**
+   * The maximum number of guesses that will be allowed.
+   */
+  private int maxGuesses;
+  
+  /**
+   * Number of times the user has guessed so far.
+   */
+  private int guessCount;
+  
+  /**
+   * Scanner for console input.
+   */
+  private Scanner myScanner;
+  
+  /**
+   * Constructs a guessing game with the given maximum value.
+   * @param givenMaxNumber
+   *   the maximum value for the secret number
+   * @param givenMaxGuesses
+   *   the number of guesses the user is allowed to make
+   */
+  public GuessingGame(int givenMaxNumber, int givenMaxGuesses)
+  {
+    maxNumber = givenMaxNumber;
+    maxGuesses = givenMaxGuesses;
+    guessCount = 0;
+    Random random = new Random();
+    secretNumber = random.nextInt(maxNumber) + 1;
+    myScanner = new Scanner(System.in);
+  }
+  
+  /**
+   * Plays a round of the guessing game.
+   */
+  public void play()
+  {
+    System.out.println("I am thinking of a number between 1 and " + maxNumber);
+    System.out.println("Try to guess");
+    boolean gameOver = false;
+    
+    while (!gameOver)
+    {
+      // TODO
+    }    
+  }
+  
+  /**
+   * Helper method to prompt the user and return the
+   * next guess.
+   * @return
+   *   an integer entered by the user
+   */
+  private int getNextGuess()
+  {
+    System.out.println("Enter your guess: ");
+    return myScanner.nextInt();
+  }
+  
+  /**
+   * Checks a guessed number and gives a hint.
+   * @param guess
+   *   the guessed number to check
+   * @return
+   *   true if the guess matches the secret number, false otherwise
+   */
+  private boolean checkGuess(int guess)
+  {
+    if (guess < secretNumber)
+    {
+      System.out.println("Too low.");
+      return false;
+    }
+    else if (guess > secretNumber)
+    {
+      System.out.println("Too high");  
+      return false;
+    }
+    else
+    {
+      System.out.println("That's it! ");
+      return true;
+    }
+  }
+}

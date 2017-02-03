@@ -1,0 +1,21 @@
+|Y3
+S => _Y3.IN0
+S => _Y3.IN0
+S => _Y3.IN0
+S => _Y3.IN0
+y3 => _Y3.IN1
+y2 => _Y3.IN1
+y2 => _Y3.IN1
+y2 => _Y3.IN1
+y2 => _Y3.IN1
+y1 => _Y3.IN1
+y1 => _Y3.IN1
+y1 => _Y3.IN1
+y1 => _Y3.IN1
+y0 => _Y3.IN1
+y0 => _Y3.IN1
+y0 => _Y3.IN1
+y0 => _Y3.IN1
+_Y3 <= _Y3.DB_MAX_OUTPUT_PORT_TYPE
+
+

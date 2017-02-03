@@ -1,0 +1,8 @@
+|Y0
+S => _Y0.IN0
+S => _Y0.IN0
+y0 => _Y0.IN1
+y0 => _Y0.IN1
+_Y0 <= _Y0.DB_MAX_OUTPUT_PORT_TYPE
+
+

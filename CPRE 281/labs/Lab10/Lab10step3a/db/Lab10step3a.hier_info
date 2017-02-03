@@ -1,0 +1,25 @@
+|Lab10step3a
+A <= lab5step1:inst9.a
+Clk => inst.CLK
+B <= lab5step1:inst9.b
+C <= lab5step1:inst9.c
+D <= lab5step1:inst9.d
+E <= lab5step1:inst9.e
+F <= lab5step1:inst9.f
+G <= lab5step1:inst9.g
+
+
+|Lab10step3a|lab5step1:inst9
+z => Decoder0.IN3
+w => Decoder0.IN0
+x => Decoder0.IN1
+y => Decoder0.IN2
+a <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+b <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+c <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+d <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+e <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+f <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+g <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+

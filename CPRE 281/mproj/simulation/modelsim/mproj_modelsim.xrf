@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, /home/wmirza/Desktop/CPRE281 lab/mproj/mproj.v
+source_file = 1, /home/wmirza/Desktop/CPRE281 lab/mproj/Block1.bdf
+source_file = 1, Multiplexer code.v
+source_file = 1, /home/wmirza/Desktop/CPRE281 lab/mproj/mux.v
+source_file = 1, /home/wmirza/Desktop/CPRE281 lab/mproj/tmux.v
+source_file = 1, /home/wmirza/Desktop/CPRE281 lab/mproj/db/mproj.cbx.xml
+design_name = Block1
+instance = comp, \Y~I\, Y, Block1, 1
+instance = comp, \W~I\, W, Block1, 1
+instance = comp, \Z~I\, Z, Block1, 1
+instance = comp, \X~I\, X, Block1, 1
+instance = comp, \inst12~0\, inst12~0, Block1, 1
+instance = comp, \B~I\, B, Block1, 1

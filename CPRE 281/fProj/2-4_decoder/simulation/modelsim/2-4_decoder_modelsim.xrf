@@ -1,0 +1,11 @@
+vendor_name = ModelSim
+source_file = 1, /home/liulige/CPRE281/fProj/2-4_decoder/2-4_decoder.bdf
+source_file = 1, /home/liulige/CPRE281/fProj/2-4_decoder/db/2-4_decoder.cbx.xml
+design_name = \2-4_decoder\
+instance = comp, \En~I\, En, \2-4_decoder\, 1
+instance = comp, \W1~I\, W1, \2-4_decoder\, 1
+instance = comp, \W0~I\, W0, \2-4_decoder\, 1
+instance = comp, \y0~I\, y0, \2-4_decoder\, 1
+instance = comp, \y1~I\, y1, \2-4_decoder\, 1
+instance = comp, \y2~I\, y2, \2-4_decoder\, 1
+instance = comp, \y3~I\, y3, \2-4_decoder\, 1

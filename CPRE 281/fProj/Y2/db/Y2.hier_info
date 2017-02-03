@@ -1,0 +1,21 @@
+|Y2
+S => _Y2.IN0
+S => _Y2.IN0
+S => _Y2.IN0
+S => _Y2.IN0
+y3 => _Y2.IN1
+y2 => _Y2.IN1
+y2 => _Y2.IN1
+y2 => _Y2.IN1
+y2 => _Y2.IN1
+y1 => _Y2.IN1
+y1 => _Y2.IN1
+y1 => _Y2.IN1
+y1 => _Y2.IN1
+y0 => _Y2.IN1
+y0 => _Y2.IN1
+y0 => _Y2.IN1
+y0 => _Y2.IN1
+_Y2 <= _Y2.DB_MAX_OUTPUT_PORT_TYPE
+
+

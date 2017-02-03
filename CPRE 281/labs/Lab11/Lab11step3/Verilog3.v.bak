@@ -1,0 +1,6 @@
+module Verilog3(q1,q0,w,y1,y0);
+input q1,q0,w;
+output y1,y0;
+assign y0 = (~q0);
+assign y1 = ((q1^q0)^w);
+endmodule

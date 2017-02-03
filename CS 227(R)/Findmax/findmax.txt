@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+
+public class FindMax
+{
+  public static void main(String[] args)
+  {
+    String nums = "42 17 87 17";
+    System.out.println("Maximum of " + nums + " is: " + findMax(nums));
+  }
+
+  /**
+   * Returns the maximum value in a string of numbers.
+   * Note the string must be nonempty.
+   * @param text
+   * @return
+   */
+  public static int findMax(String nums)
+  {
+    Scanner scanner = new Scanner(nums);
+    int maxSoFar = scanner.nextInt(); // first value
+    while (scanner.hasNextInt())
+    {
+      int value = scanner.nextInt();
+      if (value > maxSoFar)
+      {
+        // save the biggest value we have seen
+        maxSoFar = value;
+      }
+    }
+    return maxSoFar;
+  }
+
+}

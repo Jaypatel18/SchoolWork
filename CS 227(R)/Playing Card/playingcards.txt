@@ -1,0 +1,83 @@
+
+/**
+ * PlayingCard class
+ * demonstration of enumeration types and boolean expressions
+ * @author sterling
+ *
+ */
+public class PlayingCard {
+	
+	public enum Suitname { SPADES, HEARTS, CLUBS, DIAMONDS} // enumeration type
+	
+	// instance variables
+	private Suitname suit;
+	private int value;
+	
+	/**
+	 * Constructor
+	 * @param s suit of new card
+	 * @param val value of new card
+	 */
+	public PlayingCard(Suitname s, int val)
+	{
+		suit = s;
+		value = val;
+	}
+	
+	/**
+	 * Accessor method that tells whether card is a heart
+	 * demonstrates use of an enumeration type
+	 * @return true if card is a heart; false otherwise
+	 */
+	public boolean isHeart()
+	{
+		return (suit == Suitname.HEARTS);
+	}
+	
+	/**
+	 * Accessor method that tells whether the card is red
+	 * Demonstration of the use of OR ||
+	 * @return true if the card is red; false otherwise
+	 */
+	public boolean isRed()
+	{
+		return (suit == Suitname.HEARTS || suit == Suitname.DIAMONDS);
+	}
+	
+	/**
+	 * Accessor method that determines whether the card is a middle card
+	 * demonstration of the use of AND &&
+	 * @return true if card is a middle card; false otherwise
+	 */
+	public boolean isMiddleCard()
+	{
+		return (value > 5 && value < 10);
+	}
+	
+	/**
+	 * Accessor method that returns the name of the card's value
+	 * This method is incomplete; we only consider high card names
+	 * Other card names would be dealt with by using more if statements in the obvious fashion
+	 * @return a String containing the name of the card's value 
+	 */
+	public String nameOfValue()
+	{
+		String name = "";
+		if (value == 11)
+		{
+			name = "Jack";
+		}
+		else if (value == 12)
+		{
+			name = "Queen";
+		}
+		else if (value == 13)
+		{
+			name = "King";	
+		}
+		
+		return name;
+	}
+
+}
+Deal Finder 

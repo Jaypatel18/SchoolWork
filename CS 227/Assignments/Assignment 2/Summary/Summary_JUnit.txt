@@ -1,0 +1,82 @@
+-------------------
+Summary
+-------------------
+Author tags found: [Jay] (in HideableCharTest.java)
+
+SCALED SCORE: 9/15
+Points for validating good class: scaled score 5/5
+  (Correct implementation passed 6 out of 6 test cases)
+Points for catching errors in bad classes: scaled score 4/10
+  (5 out of 12 incorrect implementations failed at least one test)
+Total test cases: 6
+Valid test cases: 6
+Bad classes that passed all valid tests (or failed with exception only): 7
+  GetDisplayedAlwaysReturnsNonNull
+  GetDisplayedAlwaysReturnsNull
+  GetDisplayedReturnsWrongValue
+  MatchesAlwaysReturnsFalse
+  MatchesAlwaysReturnsTrue
+  CannotHideAfterUnhide
+  CannotUnhideAfterHide
+
+-------------------
+Test run details
+-------------------
+
+GoodHideableCharImpl (should pass)
+Finished: 6 test cases
+OK - 6 tests all passed
+-------------------
+InitialStateUnhiddenForAlpha (should fail)
+Finished: 6 test cases
+  Failed: isHidden: After hide,the state should be ishidden expected:<true> but was:<false>
+OK - 1 failures and 0 exceptions
+-------------------
+InitialStateHiddenForNonAlpha (should fail)
+Finished: 6 test cases
+  Failed: getDisplayedChar: It displays the character expected:<false> but was:<true>
+OK - 1 failures and 0 exceptions
+-------------------
+GetDisplayedAlwaysReturnsNonNull (should fail)
+Finished: 6 test cases
+ERROR - 6 tests all passed
+-------------------
+GetDisplayedAlwaysReturnsNull (should fail)
+Finished: 6 test cases
+ERROR - 6 tests all passed
+-------------------
+GetHiddenReturnsWrongValue (should fail)
+Finished: 6 test cases
+  Failed: getHiddenChar: It should display hidden character expected:<[d]> but was:<[X]>
+OK - 1 failures and 0 exceptions
+-------------------
+GetDisplayedReturnsWrongValue (should fail)
+Finished: 6 test cases
+ERROR - 6 tests all passed
+-------------------
+HiddenCharNullAfterHide (should fail)
+Finished: 6 test cases
+  Failed: unHide: expected:<false> but was:<true>
+OK - 1 failures and 0 exceptions
+-------------------
+HiddenStateNotUpdated (should fail)
+Finished: 6 test cases
+  Failed: unHide: expected:<false> but was:<true>
+OK - 1 failures and 0 exceptions
+-------------------
+MatchesAlwaysReturnsFalse (should fail)
+Finished: 6 test cases
+ERROR - 6 tests all passed
+-------------------
+MatchesAlwaysReturnsTrue (should fail)
+Finished: 6 test cases
+ERROR - 6 tests all passed
+-------------------
+CannotHideAfterUnhide (should fail)
+Finished: 6 test cases
+ERROR - 6 tests all passed
+-------------------
+CannotUnhideAfterHide (should fail)
+Finished: 6 test cases
+ERROR - 6 tests all passed
+-------------------

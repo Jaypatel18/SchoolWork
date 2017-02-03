@@ -1,0 +1,9 @@
+module lab3step3 (Alarm, Farmer, Cabbage, Goat, Wolf);
+
+	input Farmer, Cabbage, Goat, Wolf;
+	output Alarm;
+	
+	
+	assign Alarm = ((~Farmer&Goat) | (Farmer & ~C & ~G) | (Farmer&Cabbage&~Goat&~Wolf));
+	
+	endmodule

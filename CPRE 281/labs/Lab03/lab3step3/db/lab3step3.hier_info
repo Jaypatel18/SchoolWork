@@ -1,0 +1,18 @@
+|lab3step3
+Alarm <= Alarm.DB_MAX_OUTPUT_PORT_TYPE
+Farmer => Alarm.IN1
+Farmer => Alarm.IN0
+Farmer => Alarm.IN0
+Farmer => Alarm.IN0
+Cabbage => Alarm.IN1
+Cabbage => Alarm.IN1
+Goat => Alarm.IN1
+Goat => Alarm.IN1
+Goat => Alarm.IN1
+Goat => Alarm.IN0
+Wolf => Alarm.IN1
+Wolf => Alarm.IN1
+Wolf => Alarm.IN1
+Wolf => Alarm.IN1
+
+

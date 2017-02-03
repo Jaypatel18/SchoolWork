@@ -1,0 +1,13 @@
+ChangeLog:
+
+08/30/Tuesday:
+
+On this day, I worked on assignment 0 which Langton's ant. In that assignment our goal was to make a specific diagram from a straight line. In order to do that, we used some degree of angle and determine when to move where. 
+I changed my main and wrote some if and else statements that will determine the angle of the position. 
+
+Difficulties I faced:
+1. I ran the program in pyrite and it didnt work, went to the TA and he told me to run on Fedora, I installed Fedora in my computer and tried running the program and it ran but not exactly like I wanted to.
+
+2. Made some test cases and added some if statements in the code and tried again, it improved a bit but not exaclty what I wanted to look like.
+
+3. After talking to the TA we figured that I switched my i and j and after changing that and increasing the speed it loooked exaclty how I wanted to look like.

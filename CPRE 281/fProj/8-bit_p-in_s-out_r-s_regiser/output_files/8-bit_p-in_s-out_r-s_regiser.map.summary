@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Fri Dec  4 03:39:09 2015
+Quartus II 64-Bit Version : 12.1 Build 243 01/31/2013 SP 1 SJ Full Version
+Revision Name : 8-bit_p-in_s-out_r-s_regiser
+Top-level Entity Name : 8-bit_p-in_s-out_r-s_regiser
+Family : Cyclone II
+Total logic elements : 8
+    Total combinational functions : 8
+    Dedicated logic registers : 8
+Total registers : 8
+Total pins : 18
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

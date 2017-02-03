@@ -1,0 +1,10 @@
+vendor_name = ModelSim
+source_file = 1, /home/wmirza/Desktop/CPRE281 lab/mproj/Function_P.v
+source_file = 1, /home/wmirza/Desktop/CPRE281 lab/mproj/db/Function_P.cbx.xml
+design_name = Function_P
+instance = comp, \Y~I\, Y, Function_P, 1
+instance = comp, \W~I\, W, Function_P, 1
+instance = comp, \Z~I\, Z, Function_P, 1
+instance = comp, \X~I\, X, Function_P, 1
+instance = comp, \P~0\, P~0, Function_P, 1
+instance = comp, \P~I\, P, Function_P, 1

@@ -1,0 +1,89 @@
+
+public class FindingPrimes
+{
+
+  public static void main(String[] args)
+  {
+    // check whether some numbers are prime
+    System.out.println("Testing primality...");
+    System.out.println("Check 31, should be true: " + isPrime(31));
+    System.out.println("Check 35, should be false: " + isPrime(35));
+    System.out.println();
+    
+    System.out.println("Next prime after 32 is: " + findNextPrime(32));
+
+  }
+
+  
+  /**
+   * Returns the next prime number that is larger than
+   * the given value 'start'.
+   * @param start
+   * @return
+   */
+  public static int findNextPrime(int start)
+  {
+    int n = start + 1;
+    while (!isPrime(n))
+    {
+      n += 1;
+    }
+    
+    // when loop exits, we know that isPrime(n) is TRUE
+    return n;
+  }
+  
+  /**
+   * Determines whether the given integer is prime.
+   * @param n
+   * @return
+   */
+  public static boolean isPrime(int n)
+  {
+    // initially, we haven't found any divisors
+    boolean found = false;
+    
+    for (int d = 2; d < n; d += 1)
+    {
+      if (n % d == 0)
+      {
+        found = true;
+        break;
+      }
+    }
+    
+    // the number is prime if we *didn't* find a divisor
+    return !found;
+  }
+  
+  // Same as above, but uses a return statement to exit the loop
+  public static boolean isPrimeAlt(int n)
+  {
+    for (int d = 2; d < n; d += 1)
+    {
+      if (n % d == 0)
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  /**
+   * Determines whether the given integer is prime.
+   * Alternate version uses a while loop to exit
+   * from the loop as soon as a divisor is found.
+   * @param n
+   * @return
+   */
+  public static boolean isPrimeAlt2(int n)
+  {
+    int d = 2;
+    while (d < n && n % d != 0)
+    {
+      d += 1;
+    }
+    return d == n;
+  }
+  
+}

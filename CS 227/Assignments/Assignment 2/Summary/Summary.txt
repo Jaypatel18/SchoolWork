@@ -1,0 +1,244 @@
+
+Author tags found: [Jay, Jay, Jay] (in Game.java, PhraseSelector.java, HideableChar.java)
+
+
+
+
+Summary: CS227 Assignment 2 Fall 2013
+-------------------------------------
+Name                         Points    Exceptions
+-------------------------------------------------
+Game initial state tests     5/5       0
+Game letters guessed tests   0/5       0
+Game wrong guesses tests     7/15      0
+Game over/won tests          5/10      0
+Game displayed word tests    4/10      0
+HideableChar tests           10/10     0
+PhraseSelector tests         10/10     0
+-------------------------------------------------
+Total                        41/65     0
+
+
+---------------
+Test Suite:  Game initial state tests
+
+Description: Tests methods on newly constructed Game
+---------------
+   : The game constructed with 5 max guesses should get 5 max wrong guesses
+   : The default max guesses should be 7
+   : getSecretWord should return the given secret word
+   : getSecretWord should return the given secret word
+   : At the beginning, there is no guessed letter.
+   : At the beginning, game with default number of max guesses is not over.
+   : At the beginning, the game is not won.
+   : At the beginning, the number of wrong guesses should be 0.
+---------------
+Tests Passed:       8/8
+Exceptions Thrown:  0
+Score:              8/8
+Scaled Score:       5/5
+---------------
+
+
+
+
+---------------
+Test Suite:  Game letters guessed tests
+
+Description: Checks lettersGuessed method
+---------------
+   : After guessing W 3 times, the letters guessed should be W
+        : Failed Test: expected:<W[]> but was:<W[WW]>
+   : After guessing W, R, Y, W, the letters guessed should be WRY
+        : Failed Test: expected:<WRY[]> but was:<WRY[W]>
+   : After guessing A and B 3 times, the letters guessed should be AB
+        : Failed Test: expected:<A[]B> but was:<A[AABB]B>
+   : After guessing x and y, the letters guessed should be xy
+        : Failed Test: expected:<x[]y> but was:<x[xxyy]y>
+   : After guessing G,E,A,E,R,T,E, with GREAT as secret phrase, the letters guessed should be GEART
+        : Failed Test: expected:<GEART[]> but was:<GEART[E]>
+---------------
+Tests Passed:       0/5
+Exceptions Thrown:  0
+Score:              0/5
+Scaled Score:       0/5
+---------------
+
+
+
+
+---------------
+Test Suite:  Game wrong guesses tests
+
+Description: Checks count of wrong guesses and return value of guessLetter
+---------------
+   : With Hello, World! as secret phrase, guessLetter('o') should return true
+        : Failed Test: expected:<true> but was:<false>
+   : When game is over, guessLetter should return false
+   : With secret phrase ABC after guessing X, Y, Z number of wrong guesses should be 3
+   : With secret phrase ABC after guessing X, B, Z number of wrong guesses should be 2
+        : Failed Test: expected:<2> but was:<3>
+   : With secret phrase ABC after guessing C, B, A number of wrong guesses should be 0
+        : Failed Test: expected:<0> but was:<3>
+   : With secret phrase ABC after guessing C, X, Y, B, A number of wrong guesses should be 2
+        : Failed Test: expected:<2> but was:<5>
+   : After guessing C twice, with SUDDENLY as secret phrase, the number of wrong guesses should be 2 
+   : A game with default 7 max wrong guesses, after guessing B eight times, with SUDDENLY as secret phrase, the number of wrong guesses should be 7
+   : Case sensitive test: After guessing A, b, C with ABC as secret phrase, the number of wrong guesses should be 1 
+        : Failed Test: expected:<1> but was:<3>
+   : Case sensitive test: After guessing a, B, c, with 'abc' as secret phrase, the number of wrong guesses should be 1 
+        : Failed Test: expected:<1> but was:<3>
+   : With HELLOWORLD as secret phrase, guessLetter('h') should return false
+   : With HELLOWORLD as secret phrase, guessLetter('H') should return true
+        : Failed Test: expected:<true> but was:<false>
+   : With HELLOWORLD as secret phrase, guessLetter('E') should return true
+        : Failed Test: expected:<true> but was:<false>
+   : After guessing L twice, with HELLOWORLD as secret phrase, guessLetter should return false
+   : With Hello, World! as secret phrase, guessLetter('A') should return false
+---------------
+Tests Passed:       7/15
+Exceptions Thrown:  0
+Score:              7/15
+Scaled Score:       7/15
+---------------
+
+
+
+
+---------------
+Test Suite:  Game over/won tests
+
+Description: Checks over/won state after multiple operations
+---------------
+   : After guessing H, x, E, y, L, z, O, p, W, q, D each once, with HELLOWORLD as secret phrase, game should not be over
+        : Failed Test: expected:<false> but was:<true>
+   : In game with 4 wrong guesses, after guessing H, x, E, y, L, z, O, p, W, q, D each once, with HELLOWORLD as secret phrase, game should be over
+   : With secret phrase ABC after guessing C, B, A, game should be over
+        : Failed Test: expected:<true> but was:<false>
+   : With secret phrase ABC after guessing C, X, Y, B, A, game should be over
+        : Failed Test: expected:<true> but was:<false>
+   : With secret phrase ABC after guessing X, Y, Z, game should not be over
+   : After guessing a for 5 times and guessing H, E, L, O, W, D and R each once, with HELLOWORLD as secret phrase, game should be over
+   : With secret phrase ABC after guessing X, B, Z, game should not be over
+   : After guessing x for 8 times, with HELLOWORLD as secret phrase, game should be over
+   : After guessing x for 5 times and guessing H, E, L, O, W, D each once, with HELLOWORLD as secret phrase, game should not be over
+        : Failed Test: expected:<false> but was:<true>
+   : After guessing H, E, x, y, L, O, W, D, R each once, with HELLOWORLD as secret phrase, game should be over
+   : Case sensitive test: After guessing H, e, L, O, W, D,R each once, with HELLOWORLD as secret phrase, game should not be over
+        : Failed Test: expected:<false> but was:<true>
+   : After guessing H, E, L, O, W, D,R each once, with HELLO, WORLD! as secret phrase, game should be over
+   : With secret phrase ABC after guessing X, Y, Z, game should not be won
+   : With secret phrase ABC after guessing X, B, Z, game should not be won
+   : With secret phrase ABC after guessing C, B, A, game should be won
+        : Failed Test: expected:<true> but was:<false>
+   : With secret phrase ABC after guessing C, X, Y, B, A, game should be won
+        : Failed Test: expected:<true> but was:<false>
+   : After guessing H, x, E, y, L, z, O, p, W, q, D each once, with HELLOWORLD as secret phrase, game should not be won
+   : In game with 4 wrong guesses, after guessing H, x, E, y, L, z, O, p, W, q, D each once, with HELLOWORLD as secret phrase, game should not be won
+   : After guessing H, E, x, y, L, O, W, D, R each once, with HELLOWORLD as secret phrase, game should be won
+        : Failed Test: expected:<true> but was:<false>
+   : After guessing H, e, L, O, W, D, L, R each once, with HELLOWORLD as secret phrase, game should not be won
+   : After guessing H, E, L, O, W, D, R each once, with HELLO, WORLD! as secret phrase, game should be won
+   : After guessing H, E, L, O, W, R, and D each once, with HELLO WORLD! as secret phrase, won status should be true
+        : Failed Test: expected:<true> but was:<false>
+---------------
+Tests Passed:       13/22
+Exceptions Thrown:  0
+Score:              13/22
+Scaled Score:       5/10
+---------------
+
+
+
+
+---------------
+Test Suite:  Game displayed word tests
+
+Description: Checks getDisplayedWord method
+---------------
+   : With word ABC in getDisplayedWord all chars should be hidden
+   : With word @#$% in getDisplayedWord all chars should not be hidden
+   : With word X-RAY in getDisplayedWord, just the letters should be hidden
+   : After guessing L once, with HELLOWORLD as secret phrase, the Ls should not be hidden
+        : Failed Test: HideableChar array element 2 has incorrect status.  expected:<false> but was:<true>
+   : After guessing D once, with HELLOWORLD as secret phrase, the D should not be hidden
+        : Failed Test: HideableChar array element 9 has incorrect status.  expected:<false> but was:<true>
+   : Case sensitive test: After guessing l and o once, with Hello, World! as secret phrase, the Ls and Os should not be hidden
+        : Failed Test: HideableChar array element 2 has incorrect status.  expected:<false> but was:<true>
+   : After guessing X once, with HELLOWORLD as secret phrase, the letters should be hidden
+   : After guessing X, P, A, with X-RAY as secret phrase, X and A should not be hidden
+        : Failed Test: HideableChar array element 0 has incorrect status.  expected:<false> but was:<true>
+   : After guessing X, P, A, Q, Y, R with X-RAY as secret phrase, all chars should be not hidden
+        : Failed Test: HideableChar array element 0 has incorrect status.  expected:<false> but was:<true>
+   : Calling getDisplayedWord twice should give same result
+        : Failed Test: HideableChar array element 0 has incorrect status.  expected:<false> but was:<true>
+---------------
+Tests Passed:       4/10
+Exceptions Thrown:  0
+Score:              4/10
+Scaled Score:       4/10
+---------------
+
+
+
+
+---------------
+Test Suite:  HideableChar tests
+
+Description: Tests HideableChar
+---------------
+   : For new HideableChar('A'), after unHide() and hide(), isHidden() should return true
+   : For new HideableChar('A'), after unhide() and hide(), getDisplayedChar() should return null
+   : For new HideableChar('%'), after hide() and unHide(), isHidden() should return false
+   : For new HideableChar('%'), after hide() and unHide(), getDisplayedChar() should return "%"
+   : For new HideableChar('z'), getHiddenChar should return "z"
+   : For new HideableChar('A'), getHiddenChar should return "A"
+   : For new HideableChar('%'), getHiddenChar should return "%"
+   : For new HideableChar('A'), isHidden should return true
+   : For new HideableChar('%'), isHidden should return false
+   : For new HideableChar('A'), getDisplayedChar should return null
+   : For new HideableChar('%'), getDisplayedChar should return "%"
+   : For new HideableChar('A'), matches('A') should return true
+   : For new HideableChar('%'), matches('%') should return true
+   : For new HideableChar('A'), matches('B') should return false
+   : For new HideableChar('%'), matches('%') should return false
+   : For new HideableChar('A'), matches('a') should return false
+   : For new HideableChar('A'), after unhide(), isHidden should return false
+   : For new HideableChar('A'), after unhide(), getDisplayedChar() should return "A"
+   : For new HideableChar('%'), after hide(), isHidden() should return true
+   : For new HideableChar('%'), after hide(), getDisplayedChar() should return null
+   : For new HideableChar('%'), after hide(), getHiddenChar() should return "%"
+---------------
+Tests Passed:       21/21
+Exceptions Thrown:  0
+Score:              21/21
+Scaled Score:       10/10
+---------------
+
+
+
+
+---------------
+Test Suite:  PhraseSelector tests
+
+Description: Tests PhraseSelector
+---------------
+   : selectWord should return some line of the file (no whitespace)
+   : selectWord should return some line of the file (has whitespace)
+   : If file does not exist, constructor OR selectWord method should throw FileNotFoundException
+   : When given identical Random objects, two calls to selectWord should return the same word
+   : When Random.nextInt(x) returns zero, selectWord should return first line of file (contains whitepace)
+   : When Random.nextInt(x) returns 4, selectWord should return line 4 of file (allows 0-based or 1-based, has whitespace)
+   : For a one-line file, selectWord should return the line (no whitespace)
+   : When Random.nextInt(x) returns x - 1, selectWord should return last line of file (no whitespace)
+   : When Random.nextInt(x) returns zero, selectWord should return first line of file (no whitespace)
+   : When Random.nextInt(x) returns 4, selectWord should return line 4 of file (allows 0-based or 1-based, no whitespace)
+---------------
+Tests Passed:       10/10
+Exceptions Thrown:  0
+Score:              10/10
+Scaled Score:       10/10
+---------------
+
+
+

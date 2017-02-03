@@ -1,0 +1,55 @@
+/**
+ * Simple model of a door that can be open or closed.
+ * @author smkautz, with modifications by A. Sterling and students from Section E
+ * @since 2/3/14
+ *
+ */
+public class Door
+{
+  
+  /**
+   * Indicates whether the door is open (true means open,
+   * false means closed).
+   */
+  private boolean open;
+  
+  /**
+   * Constructs a door that is initially in the specified state.
+   * @param startState the state we want the new door to start in.
+   */
+  public Door(boolean startState)
+  {
+    open = startState;
+  }
+  
+  /**
+   * Toggles whether this door opens or closes.
+   * The whole method can also be written as simply as:
+   *      open = !open;
+   */
+  public void toggleDoor()
+  {
+    if (open)
+    {
+    	open = false;
+    }
+    else
+    {
+    	open = true;
+    }
+  }
+  
+  
+  
+  /**
+   * Determines whether the door is open.
+   * @return
+   *    true if the door is open, false otherwise
+   */
+  public boolean isOpen()
+  {
+    return open;
+  }
+  
+}
+Deal Finder 

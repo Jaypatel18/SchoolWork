@@ -1,0 +1,6 @@
+module lab11step3(q2,q1,q0,w,y1,y0);
+input (q2,q1,q0);
+output (y1,y0);
+assign y0 = (~q0);
+assign y1 = ((q1^q0)^w)
+endmodule

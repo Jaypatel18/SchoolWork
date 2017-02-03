@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Dec  4 18:54:00 2012
+Quartus II Version : 10.0 Build 218 06/27/2010 SJ Full Version
+Revision Name : 4bit16to1Mux
+Top-level Entity Name : 4bit16to1Mux
+Family : Cyclone II
+Total logic elements : 40
+    Total combinational functions : 40
+    Dedicated logic registers : 0
+Total registers : 0
+Total pins : 72
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

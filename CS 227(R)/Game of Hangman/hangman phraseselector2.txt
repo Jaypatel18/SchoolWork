@@ -1,0 +1,70 @@
+package hw2;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Random;
+import java.util.Scanner;
+
+
+/**
+ * Generator for secret words or phrases for word-guessing games.  
+ * A PhraseSelector chooses a line randomly from a file specified in 
+ * the constructor.
+ * 
+ * In this implementation, the file is opened and read each time
+ * selectWord is called.  For an alternate approach in which
+ * the file is read once into an ArrayList, see PhraseSelector.java.
+ */
+public class PhraseSelectorAlt 
+{
+  /**
+   * Name of the word file.
+   */
+  private String filename;
+  
+  /**
+   * Constructs a PhraseSelector that will select words from the given file.
+   * This constructor <em>may</em> throw a FileNotFoundException
+   * if the file cannot be opened.
+   * @param givenFilename
+   *   the name of the file
+   */
+  public PhraseSelectorAlt(String givenFilename) throws FileNotFoundException
+  {
+    filename = givenFilename;
+  }
+  
+  /**
+   * Returns a word or phrase selected at random from this PhraseSelector's file,
+   * using the given source of randomness.  Specifically, this method returns
+   * the nth line of the file, where n = rand.nextInt(size) and size
+   * is the number of lines in the file.  This method <em>may</em>
+   * throw FileNotFoundException if the file cannot be opened.
+   * @return
+   *   a randomly selected line of the file
+   */  
+  public String selectWord(Random rand) throws FileNotFoundException
+  {
+    // count the lines in the file
+    Scanner in = new Scanner(new File(filename));
+    int count = 0;
+    while (in.hasNextLine())
+    {
+      in.nextLine();
+      count += 1;
+    }
+    in.close();
+    
+    // generate a random number in the range 0 through count - 1
+    int n = rand.nextInt(count);
+    
+    // we want line n of the file, so read the file up to line n - 1
+    in = new Scanner(new File(filename));
+    for (int i = 0; i < n; ++i)
+    {
+      in.nextLine();
+    }
+    String s = in.nextLine();
+    in.close();
+    return s;
+  }
+}

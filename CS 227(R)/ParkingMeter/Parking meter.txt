@@ -1,0 +1,297 @@
+package hw1;
+
+/**
+ * The <code>ParkingMeter</code> class models a simple parking meter.
+ * A parking meter is constructed so that a specified number of 
+ * minutes is associated with each of three coin types, nickels,
+ * dimes, or quarters.  Inserting coins adds time to the meter, and
+ * the passage of time, simulated with the <code>simulateTime</code>
+ * method, reduces the remaining time on the meter (which never
+ * goes below zero).  The meter keeps track of the total number
+ * of coins it contains and the total value (in cents) of all
+ * coins it contains.  These values can be reduced to zero using
+ * the <code>emptyCoins</code> method.
+ * <p>
+ * Like many real-world parking meters, a <code>ParkingMeter</code>
+ * is configured to allow a maximum amount of time, regardless of the 
+ * number of coins inserted.  Similarly, the meter can only hold a 
+ * finite number of coins.  If the client attempts to insert more coins
+ * than the meter can hold, those additional coins will not have any 
+ * effect.
+ */
+public class ParkingMeter
+{
+  /**
+   * Value of dime coin in cents.
+   */
+  public static final int DIME_VALUE = 10;
+  
+  /**
+   * Value of nickel coin in cents.
+   */
+  public static final int NICKEL_VALUE = 5;
+  
+  /**
+   * Value of quarter coin in cents.
+   */
+  public static final int QUARTER_VALUE = 25;
+  
+  /**
+   * Number of minutes added for a nickel.
+   */
+  private final int nickelMinutes;
+
+  /**
+   * Number of minutes added for a dime.
+   */
+  private final int dimeMinutes;
+  
+  /**
+   * Number of minutes added for a quarter.
+   */
+  private final int quarterMinutes; 
+  
+  /**
+   * Time limit for this meter.
+   */
+  private final int maxTime;
+  
+  /**
+   * Maximum number of coins this meter can hold.
+   */
+  private final int maxCoins;
+
+  /**
+   * Amount of money, in cents, currently in this meter.
+   */
+  private int totalCents;
+  
+  /**
+   * Number of coins currently in this meter.
+   */
+  private int totalCoins;
+  
+  /**
+   * Amount of time remaining before this meter expires.
+   */
+  private int timeRemaining;
+
+  /**
+   * Constructs a new ParkingMeter that records the given number of minutes
+   * for each nickel, dime, or quarter.  Initially there is no time on the
+   * meter and it contains no coins.
+   * 
+   * @param givenMinutesForNickel
+   *   the number of minutes this meter will add for each nickel
+   * @param givenMinutesForDime
+   *   the number of minutes this meter will add for each dime
+   * @param givenMinutesForQuarter
+   *   the number of minutes this meter will add for each quarter
+   * @param givenMaxTime
+   *   the maximum time allowed for this meter
+   * @param givenMaxCoins
+   *   the maximum number of coins this meter can hold
+   */
+  public ParkingMeter(int givenMinutesForNickel, 
+                      int givenMinutesForDime, 
+                      int givenMinutesForQuarter,
+                      int givenMaxTime,
+                      int givenMaxCoins)
+  {
+    // we'll need to store all given arguments in instance vars
+    nickelMinutes = givenMinutesForNickel;
+    dimeMinutes = givenMinutesForDime;
+    quarterMinutes = givenMinutesForQuarter;
+    maxTime = givenMaxTime;
+    maxCoins = givenMaxCoins;
+    
+    // initialize remaining instance variables
+    totalCents = 0;
+    timeRemaining = 0;
+    totalCoins = 0;
+  }
+  
+  /**
+   * Empties all coins from this meter, without
+   * modifying the remaining time.  
+   */
+  public void emptyCoins()
+  {
+    totalCents = 0;
+    totalCoins = 0;
+  }
+    
+  /**
+   * Returns the total amount of money, in cents, contained
+   * in this meter.
+   * @return
+   *   total value, in cents, of the coins in this meter
+   */
+  public int getCents()
+  {
+    return totalCents;
+  }
+  
+  /**
+   * Returns the total amount of money contained in this
+   * meter as a string showing a dollar amount with two decimal places.  For
+   * example, if there is 45 cents in the meter the returned
+   * string should be "0.45".  
+   * @return
+   *   string representing the amount of money in dollars
+   */
+  public String getDollarString()
+  {
+    return String.format("%01.2f", totalCents / 100.0);
+  }  
+  
+  /**
+   * Returns a string representing the time remaining on 
+   * this meter in the form "hh:mm".  For example, if there
+   * is 65 minutes remaining, the returned string should be
+   * "01:05".  
+   * @return
+   *   string of the form "hh:mm" representing the time remaining
+   */
+  public String getHourMinuteString()
+  {
+    int hours = timeRemaining / 60;
+    int min = timeRemaining % 60;
+    String timeString = String.format("%02d:%02d", hours, min);
+    return timeString;
+  }
+
+  /**
+   * Returns the time in minutes remaining on this meter; the
+   * returned value is always greater than or equal to zero.
+   * @return
+   *   the time remaining on this meter in minutes
+   */
+  public int getMinutesRemaining()
+  {
+    return timeRemaining;
+  }  
+   
+  /**
+   * Returns the total number of coins
+   * contained in this meter.
+   * @return
+   *   total number of coins in this meter
+   */
+  public int getTotalCoins()
+  {
+    return totalCoins;
+  }
+
+  /**
+   * Inserts a given number of dimes into this meter, adding the appropriate
+   * amount of time, up to the maximum time for the meter.
+   * Does nothing if <code>howMany</code> is negative.
+   * @param howMany
+   *   number of dimes to insert
+   */
+  public void insertDimes(int howMany)
+  {
+    // call helper method
+    insertCoins(DIME_VALUE, dimeMinutes, howMany);
+  }
+  
+  /**
+   * Inserts a given number of nickels into this meter, adding the appropriate
+   * amount of time,, up to the maximum time for the meter.
+   * Does nothing if <code>howMany</code> is negative.
+   * @param howMany
+   *   number of nickels to insert
+   */
+  public void insertNickels(int howMany)
+  {
+    // call helper method
+    insertCoins(NICKEL_VALUE, nickelMinutes, howMany);
+  }
+  
+  /**
+   * Inserts a given number of quarters into this meter, adding the appropriate
+   * amount of time, up to the maximum time for the meter.
+   * Does nothing if <code>howMany</code> is negative.
+   * @param howMany
+   *   number of quarters to insert
+   */
+  public void insertQuarters(int howMany)
+  {
+    // call helper method
+    insertCoins(QUARTER_VALUE, quarterMinutes, howMany);
+  }
+  
+  /**
+   * Determines whether this meter is expired.
+   * @return
+   *   true if there is no time remaining, false otherwise
+   */
+  public boolean isExpired()
+  {
+    return timeRemaining == 0;
+  }
+  
+  /**
+   * Simulates the passage of time for a given number of minutes.
+   * Does nothing if <code>minutes</code> is negative.
+   * @param minutes
+   *   the number of minutes that have passed
+   */
+  public void simulateTime(int minutes)
+  {
+    // do nothing if minutes is negative (or zero)
+    if (minutes > 0)
+    {
+      timeRemaining = timeRemaining - minutes;
+
+      // make sure it doesn't go below zero
+      timeRemaining = Math.max(timeRemaining, 0);
+    }
+  }
+
+  /**
+   * Returns a String representation of this object of the form
+   * <pre>
+   * hw1.ParkingMeter [time 64/120 coins 45/300 value 575]
+   * </pre>
+   * @return 
+   *   string representation of this object
+   */
+  public String toString()
+  {
+    String ret = "hw1.ParkingMeter [" +
+     "time " + timeRemaining + "/" + maxTime + 
+     ", coins " + totalCoins + "/" + maxCoins + 
+     ", value " + totalCents +  "]";
+    return ret;    
+  }
+  
+  /**
+   * Helper method for inserting coins.
+   * @param coinValue
+   *   value of coin type to insert
+   * @param timePerCoin
+   *   minutes to be added per coin
+   * @param howMany
+   *   number of coins of the given type
+   */
+  private void insertCoins(int coinValue, int timePerCoin, int howMany)
+  {
+    // do nothing if howMany is negative or zero
+    if (howMany > 0)
+    {
+      // how many more coins can we hold?
+      int space = maxCoins - totalCoins;
+      int actualHowMany = Math.min(howMany, space);
+
+      // adjust coins, money, and time remaining
+      totalCoins = totalCoins + actualHowMany;
+      totalCents = totalCents + coinValue * actualHowMany;
+      timeRemaining = timeRemaining + timePerCoin * actualHowMany;
+
+      // make sure time doesn't go over limit
+      timeRemaining = Math.min(timeRemaining, maxTime);     
+    }
+  }
+}

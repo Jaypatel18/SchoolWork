@@ -1,0 +1,14 @@
+Graded by: Bronson Mayse
+email: bmayse@iastate.edu
+
+tests:
+	41/65
+	9/15
+
+Javadoc: -13 No tags filled in and no descriptions.
+Style: -2 Javadoc inside methods and other odd inline comments
+HideableChar:good
+PhraseSelector:good
+Game: -2 don't save duplicate wrong guesses into array
+	: -30 Everything is being counted as a wrong guess, guess\
+Total: 173/250

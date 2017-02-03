@@ -1,0 +1,101 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'CLOCK'
+Slack : -0.962
+TNS   : -4.619
+
+Type  : Slow Model Setup 'clock_generator:inst5|clock_divider_1024:inst101|inst10'
+Slack : -0.761
+TNS   : -3.832
+
+Type  : Slow Model Setup 'clock_generator:inst5|clock_divider_1024:inst102|inst10'
+Slack : -0.449
+TNS   : -1.491
+
+Type  : Slow Model Setup 'clock_generator:inst5|inst7'
+Slack : -0.068
+TNS   : -0.136
+
+Type  : Slow Model Hold 'CLOCK'
+Slack : -2.536
+TNS   : -2.536
+
+Type  : Slow Model Hold 'clock_generator:inst5|clock_divider_1024:inst102|inst10'
+Slack : -2.159
+TNS   : -2.159
+
+Type  : Slow Model Hold 'clock_generator:inst5|clock_divider_1024:inst101|inst10'
+Slack : -2.068
+TNS   : -2.068
+
+Type  : Slow Model Hold 'clock_generator:inst5|inst7'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'CLOCK'
+Slack : -1.380
+TNS   : -11.380
+
+Type  : Slow Model Minimum Pulse Width 'clock_generator:inst5|clock_divider_1024:inst101|inst10'
+Slack : -0.500
+TNS   : -10.000
+
+Type  : Slow Model Minimum Pulse Width 'clock_generator:inst5|clock_divider_1024:inst102|inst10'
+Slack : -0.500
+TNS   : -7.000
+
+Type  : Slow Model Minimum Pulse Width 'clock_generator:inst5|inst7'
+Slack : -0.500
+TNS   : -6.000
+
+Type  : Fast Model Setup 'CLOCK'
+Slack : 0.104
+TNS   : 0.000
+
+Type  : Fast Model Setup 'clock_generator:inst5|clock_divider_1024:inst101|inst10'
+Slack : 0.187
+TNS   : 0.000
+
+Type  : Fast Model Setup 'clock_generator:inst5|clock_divider_1024:inst102|inst10'
+Slack : 0.327
+TNS   : 0.000
+
+Type  : Fast Model Setup 'clock_generator:inst5|inst7'
+Slack : 0.508
+TNS   : 0.000
+
+Type  : Fast Model Hold 'CLOCK'
+Slack : -1.580
+TNS   : -1.580
+
+Type  : Fast Model Hold 'clock_generator:inst5|clock_divider_1024:inst102|inst10'
+Slack : -1.326
+TNS   : -1.326
+
+Type  : Fast Model Hold 'clock_generator:inst5|clock_divider_1024:inst101|inst10'
+Slack : -1.310
+TNS   : -1.310
+
+Type  : Fast Model Hold 'clock_generator:inst5|inst7'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'CLOCK'
+Slack : -1.380
+TNS   : -11.380
+
+Type  : Fast Model Minimum Pulse Width 'clock_generator:inst5|clock_divider_1024:inst101|inst10'
+Slack : -0.500
+TNS   : -10.000
+
+Type  : Fast Model Minimum Pulse Width 'clock_generator:inst5|clock_divider_1024:inst102|inst10'
+Slack : -0.500
+TNS   : -7.000
+
+Type  : Fast Model Minimum Pulse Width 'clock_generator:inst5|inst7'
+Slack : -0.500
+TNS   : -6.000
+
+------------------------------------------------------------

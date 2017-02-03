@@ -1,0 +1,5 @@
+apple 1000
+pear 500
+grape 300
+banana 1
+durian 130

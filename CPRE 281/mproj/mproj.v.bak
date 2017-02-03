@@ -1,0 +1,5 @@
+module mproj(W,X,Y,Z,B);
+	input W,X,Y;
+	output B;
+		
+	assign B =(X&~Y&Z)(W&X&Y)(~W&~X&Y&~Z)

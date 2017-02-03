@@ -1,0 +1,118 @@
+ChangeLog of Assignment 1.08 Due Date 11/09:
+
+Nov 4: On this day I made a TODO list after reading the PDF in order to get this assignment done, I made sure I know what parts I need to work on and what parts will be most difficult to implement for this assignment. Since TODO list helps me exactly what I need to get it done on what day and what step to move next. 
+
+Nov 6: On this day, I started implementing the assignment and started changing few .cpp files that were suppose to change and writting and an instance class where I mainly do instances for both monster as well as the objects. On this day, I worked on monster instance since it looked easy. After writting some code for it to print out monsters as far as all the monsters that are included in the file like name, description etc. I ran into an error were I was not able to figure out what I was suppose to do next, but by Angel Gonzalez's help he told me how to fix error and I was able to print out the monsters after changing my rlg327 file. The error I was facing was the monsters were not printing and the file that I wrote I was not calling the correct way as it was suppose to be.
+
+Nov 7: Once I was able to print out the monsters on my console, I was then able to start working on my colors. After getting help from the TA I was able to know where exactly I was suppose to add 2 attron and attroff lines in order for them to printout the colors, after adding those lines in io.cpp I was then able to test my code again and there were colors that were printing correct way. 
+
+Nov 8: After finishing my monster and color, I was then able to move on to the part where I have to implement objects that were mentioned in the assignment, from the assignment I came to know that I have to print at least 10 monsters on my dungeon. After adding some code to my instance.cpp I was then able to print out my objects by help from Tumsa and Rumesh, in order to get my objects the main thing I did was created and array of all the objects that were specified in the assignemnt and basically looped through it. While working on this, I ran into a problem where I was unsure about, if we see teh object and the PC is close to 3 blocks apart then we are suppose to be able to see the object but if we are far than 3 blocks and it is already seen by the PC should it be still visible or no? and after talking to the TA I came to know that, it is only supose to be visible when the PC is 3 blocks apart and disapper after. After all, I was able to finish the assignment. 
+
+
+ChangeLog of Assignment 1.07 Due Date 11/02:
+
+Oct 28: On this day I started working on the assignment and made sure that I have a checklist on what I had to do to get this assignment done. When I started this assignment I came to know that the only one thing that I had to do for this particular assignment was to parse a text file and thats it. But later I came to know that we had to do more than that.
+
+Oct 29: On this day, I started implementing the assignment, I changed all the .c files to .cpp files on the professor's code and after running the errors I came to know that I got a lot of compilation errors. After casting them I got ride of all the errors that I was getting after changing the files to .cpp
+
+Oct 30: On this day, I started to implement my parse class where I wrote code where it will open the file and checks if there is a file, if there is a file then it will read throught the keywords and store it in a vector. I have also addded some error checking for this assignment so that it can check for errors. While parsing everything went really smooth since I did not run into issues after working through parsing. 
+
+Nov 1: On this day, I started to implement monster and dice class, I parsed the dice and made a seperate class for both. Making seperate class for both were very straight forward. After doing that, I made sure I was saving HP and other that has more than an integer value to be removed for example if the HP is 12+2d6 then it will print 12,2 and 6 where 12 is base, 2 is dice and 6 is side. Also I implemented where it will store all the monster values. While working on that I had an error about vector that TA and I were unable to figure out after spending hours on debugging, so I changed all my logic in a way where I dont run into error but was uable to do so.
+
+Nov 2: On this day, I started implementing colors and ability. I made two seperate class for them and made sure that I am storing the values that I have been getting in my vector as an int value. I used Switch statements where I got help from Tumsa Musa. He explained me what exactly I was supppose to do and after his explanation I was able to make color class. As far as the ability is concerned, this class is the class where I faced a lot of issues. After asking help from other TAs and they explained me the way it should be written. That way it made easy for me since the TA gave me a big hint of using npc.h and using those bitfields. 
+
+
+
+ChangeLog for Assignment 1.06 Due Date: 
+
+Oct 21: On this day I started how I need to implement this and made a checking for what I wil be doing every single day in order to get this assignemnt done. After making the checklist, I followed the rules that I made and started working on it. I watched bunch of youtube videos on how to convert the C to C++ as well as referred to the Professor's code. After getting a good idea I started working no it.
+
+Oct 22: On this day, I started editing the header file for all the header files that were required for this assignment, after editing the header files and adding few function like extern C and #ifdef #endif after adding those, I complied my program and got a lot of errors, after walking through one by one I was able to figure it out and was able to print the dungeon.
+
+Oct 23: On this day, I changed .c to .cpp on character, noc and pc files. I changed all the structs to class in all the cpp files. Then I started to implement getter and setter and after doing I tried complining my assignment and got a lot of errors I went through and walked through all the errors and tried fixing them one by one, after fixing them one by one I came up to a point where I could not figure it out and was hard for me to move forward. I decided to go to the TA and ask for his help. After hour of debugging we were not able to figure it out.
+
+Oct 24: I had to restart the assignment on this day all over again and started doing everything again from sctarch. Since no one was able to figure it out. After starting from scractch I started doing the same that I did for previous assignment with a TA and made sure whatever I was doing I was right. After doing that, I started implementing getters and setters. After doing that I again got a lot of a lot of errors but from the help from the other TA, I was able to figure it out and was able to compile my program. 
+
+Oct 25: On this day, I started doing fog of war and was unsuccesful doing that as well. After getting help from the TA I got an alogortihm on how to do it and started implementing how to do it. I tried my best and made some changes but still was unable to finish it. I then started to work through my error and was not able to finsih it.
+
+Oct 26:On this day, I debugged and made sure my code was working properly and doesnt have any memeory leaks and doesnt run into issues. I wrote my readme and changelog as well on this. I tried fixing bunch of other errors and was unable to finsih all of them, Tumsa and Angel helped me with it but they were unable to help a lot much either. I really apologize for not getting it done. I will make sure that I do and start ahead of time from next time. 
+
+
+ChangeLog for Assignment1.05 Due Date: 10/19
+
+Oct 14: I started working on this assignment on this day after the exam was over. I read throught the PDF and wrote a psuedo code on how I was going to handle this assignment and what will I need to do in order to get this assignment done. That really helped me tackle each and every single thing in the assignment. 
+
+Oct 16: I started implementing the code and worked on the keys first. I wrote few case statements and made sure that they are initialized somewhere and not unused. After writting the keys as per the requirement in the assignment. I tested the code and figure that I was using 2 case statements for the same key and it screwed up the assignment output and some logic. After changing that into double case statements it was easy to work throught. 
+
+Oct 17: On this day, I started working on priting out the list of the monsters, for that I created a new c file as well a new h file so that I can write some code for that function as well as scrolling function with q function. Making a new .c file really helped me and made my program look much better than making it all the functions in my case file where I have all the keys stored.
+
+Oct 18: On this day, I tested the code and figured that my direction logic is wrong so I had to change some symbol and it worked fine. For the first I didnt get segmentation fault for this assignment so far but after writting my function for monster list, I got a segmentation fault. Valgrind really helped me with that and I solved the problem. Other issue I ran into was I was not calling the function that I wrote for monster list in my cases so it was not giving me any output after I hit "m". Other issue I got was, for 5 and space, I was initiallizing them to 0 instead of 1 so nothing was moving in the dungeon, but after taking a help from the Ta for those two issues I was able to finsih the assignment. 
+
+
+ChangeLog for Assignment1.04 Due Date: 10/05
+
+Oct 30: I read the assignment and made a checklist on what I will be doing to get this assignment done.
+
+Oct 1: I started implemented the code and ran into a lot of issues in order to fix that i had to go to TA office hours and see what they had to say about it, after getting a better clarification and understanding of the assignment I came to know what I was doing was completely wrong. After changing all I finally figured what the assignment was about.
+
+Oct 2: On this day, I wrote couple of methods for my program, I made sure that I followed the instructions that TA told me and that really helped me a lot. I implemented few of my methods on this and came to I also wrote my main side by side so that I know that the program was giving the correct output. After making some progress on some methods, I was finally be able to print some dungeon on my terminal. I also worked on the —nummon on this day and was succesfully be able to finish it.
+
+Oct3: On this day, my main goal was to move my monsters but I was very unsuccessful doing that, after getting help from TA I was still unable to do it. I still tried my best to make it to work and was successful to print few monsters but was unsuccessful moving them around the dungeon. Then I moved on to next where I had to do intelligence, telepathic, tunneling and eratic. There are some methods that I have for Telepathic and eratic but I came to know the way I did not get correct output for neither of those. 
+
+Oct4: On this day, after compiling my program I came to know that I had a segmentation fault and was not able to figure out all day, took helps from TA and came to know that I have a variable that is misplaced and misused in some location, after changing that I was able to print out few dungeons on the terminal. 
+
+Oct5: On this day, I spent most of my time minimizing the code so that it is not repetitive. I made sure that my main is correct and not having any warning, I tired removing all my warnign but was not successful to accomplish that. For this assignment I am very sorry but I was not able to finish it. I will make sure that I get a lot of done in a day, due to exams for other classes as well as exams I was not able to contribute too much for this assignment. 
+
+
+
+ChangeLog for Assignment1.03 Due Date: 09/28
+
+Sept 17: I started reading the assignment and didn’t make any progress, but I started thinking on how I am going to handle this assignment.
+
+Sept 18: I started the assignment using my own code and tried to implement Dijkstra. I spent most of my day and then realized that I should use Professor’s code. I then used his code and started to work on it. 
+
+Sept 19: On this day I started to work on printing the PC by adding  ‘@’ and made a good progress for it and was able to print out the PC, I then worked on the cost and finding the distance. I also implemented dijk_dist() on this day, in this method I copied and pasted the professor’s dijkstra and made few changes. This took me whole day to figure out the algorithm and understand the exact specifications that we were suppose to do. After running the test, I came to know that I have Segmentation fault, gdb saved my life and told me where exactly my error was, after changing the error, I still had seg fault. Later, figured that I was not storing them in correct order/ position. 
+
+Sept 20: On this day I implemented dijk_tun()in this method I changed few case statements that will give the output for top, bottom, left, right etc. In this method the main issue I had was changing the position and counting the cost. After getting help from the TA he told me how to implement that and helped me figure that problem out.
+
+Sept 22: On this day, I worked on the dijk_dist_map(), in this method I am making a char where it has all the numbers that were required in the assignment, and then I used nested for loops in order to check if they are less than 21 and 80 since that was the requirement for the assignment. 
+
+Sept 25: On this day, I implemented dijk_dist_tun(), in this method I did very similar to the one that I did in dijk_dist_map(), and also checked if they are less than 21, 80 as specifications. After running my code and implemented the main for all the methods, I ran into another seg fault. I couldn’t figure it out on this day.
+
+Sept 27: I went to the TA on this day and asked him what was wrong and he told me that I am not strong the correct cost and I have some error in my logic, after adding some lines by TA and giving me an idea where the problem is at, I got to work.I wrote some comments and made sure everything works fine. 
+
+Sept 28: On this day I made sure that I have worked everything out, after checking the sample solution that professor posted on blacboard, it came to know that I have a small mistake in my code where I am printing the dungeon in wrong order, after fixing that in one of my method it looked very similar to professor's code. 
+
+
+ChangeLog for Assignment1.02 Due Date: 09/14
+
+Sept 9: I started implementing the assignment, on this day, I did not really made a lot of progress since I didn’t get the idea of the project. After talking few TA’s and what are the expectations for the assignment it really gave me a good basic idea on what and how I should start with. On this day I started working on making a checklist and how I am going to handle this project. On this day I fixed the bug that I had for the previous assignment so that I can get a head start and use my code.
+
+Sept 10: After getting a good idea on this project, I decided to work on the assignment using my own code since I figured what was the mistake I did for the last assignment. On this day I worked on making new struct room inside and made a good progress on making new structs. I learned that I can use size_t in one of this structs. Also I wrote a method called room_all, while working on this method I had a lot of issues and had a hard time using -> syntax but after getting help from a TA I was able to understand the concept and was able to make that method successfully. I also wrote another method called space_mem in this method I wrote it very easily since it was very similar to what I did in the previous method.  
+
+Sept 11: I wrote few more methods on this day, I made a good progress on the assignment, but I ran into an error where I got few syntax and logic errors in order to allocating the memory. After using the debugging tools I figured it out what was wrong with it and after fixing one error, there are few more errors that popped up. After solving one error at a time by walking through the project it ran without any errors or warnings. I also started writing a bit of save and load method and checked the argument parameters that were passed in by the user and were required by the user.
+
+Sept 12: On this day I worked on the hardness for this project since it plays a very important role on your output. For this assignment I used a method called hardnes that method checking for row and column and checking if it is equal to the dot or a hashtag and checking few statements that will be helpful or the flags. I also started writing main while I was writing each function since it was really important for me to check if there were any errors that were generating while I was writing the program. 
+
+Sept 13: On this day I started writing save and load methods, I had a very hard time figuring out the this methods since it was really hard for me to figure it out how to use “big edian” and “small edian” after learning that in class on Tuesday from the professor I got a very good idea on what I am suppose to do for this two methods, since both the methods were very similar to each other with few changes in each method. After writing some lines of code for this program and getting help from the TA I came to know that I have a segmentation fault. It was very hard for me to figure out that issue where as I was also getting some wrong output for this project. After talking to the TA, and using debugger TA told me where exactly my error was and after figuring that out, and compiling it again, I was able to print out the dungeon. 
+
+Sept 14: On this day, I rewrote my save and load method and made it as simpler as possible, After getting a good idea from the lecture and with help from TA, I was successfully be able to compile both save and load method with correct output. On this day I also wrote some comments on my code in order for the TA’s to understand what I did in the method.
+
+
+
+ChangeLog for Assignment1.01 Due Date: 09/07
+
+Aug 31: I started writing the program, I read the PDF couple of time and made a checklist on what to do first and what to do in the end that really helped me.
+
+Sept 1: I started implementing the code and made a good progress in generating struct. I also wrote a method called room_generator() in this method I initializing them by using some if else statements and using some % operator in order to get the correct numbers.
+ 
+Sept 3: On this day I implemented 2 methods they were room_print and print_dung, in room_print while I was implementing that I ran into issue was not able to figure it out the algorithm to check if there is anything besides each other. After thinking for a bit and using stack overflow I figured out on how to solve that issue, after attempting few times I finally succeeded in making that work. In the method I am using row as my inner loop and column as my outer loop and adding a dot.
+Second method that I wrote was, print_dung; in this method I made a mistake by looping through row first and then column and was getting a wrong output since it should be column first and then row. While making that I also wrote Main and started updating main side by side in order to see what are my outputs and checking if there are any errors in my logic. 
+
+Sept 4: On this day I wrote a method called room_allocation, in this method I am checking if there is anything besides each other and if there is anything then return not true. I did that using if statement. 
+I also wrote struct clean_r and clean_dung in this method, I had a very hard time figuring what side to check first and what to compare it with but after understanding it better from a TA I was was able to implement the code by taking help from the TA, I did face some of the syntax and logical errors but after debugging a bit and writing a lot of printf statements I was able to figure it out. 
+In clean_dung: I made mistake and allocated different elements in different room and was getting all the wrong output but drawing it out on a piece of paper really helped me out and was able to figure it out. At last, I wrote a main in order to check my work and was printing the correct outputs.
+
+Sept 5 and 6 : I also wrote a method where I tried to make some corridors and didn’t get it successfully, figured the math I was using was wrong and was not able to make the corridors in the correct spot. Some of them were overlapping,after taking help from the TA we figured that my math was wrong after correcting that it was working perfectly fine and we also figured that my x and y were misused and were in a wrong spot.
+
+Sept7: I rewrote my main since i used a lot of print statements to check my work and debug the seg fault I was getting and after using valgrind I was able to figure it out (thank to stack overflow) After that I was tried debug my code and checked if all my cases were working fine as they were suppose to and make sure that there aren’t any logical errors, I also tried making my code look clean and added some comments in order to get TA’s understand my code. 

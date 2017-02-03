@@ -1,0 +1,360 @@
+package mini3;
+
+/**
+ * Simple model of a strand of DNA.  An instance of this class encapsulates
+ * a string of the letters 'A', 'C', 'G', 'T' and has operations for 
+ * determining its matches with other DNA strands.
+ */
+public class DNAStrand
+{
+  /**
+   * String of data for this strand.  The 'final' declaration is optional
+   * but helps ensure we don't accidentally try to change the value.
+   */
+  private final String data;
+  
+  /**
+   * Constructs a DNAStrand with the given string of data, normally
+   * consisting of characters 'A', 'C', 'G', and 'T'.
+   * This constructor does not check whether the given string
+   * is valid (contains only valid characters); see the method isValid.
+   * @param givenData
+   *   string of characters for this DNAStrand
+   */
+  public DNAStrand(String givenData)
+  {
+    data = givenData.toUpperCase();
+  }
+  
+  /**
+   * Returns a String representing the data for this
+   * DNAStrand.
+   * @return
+   *   the characters in this DNAStrand
+   */
+  public String toString()
+  {
+    return data;
+  }
+  
+  /**
+   * Determines whether all characters in this strand
+   * are valid ('A', 'G', 'C', or 'T').
+   * @return
+   *   true if all characters are valid, false otherwise
+   */
+  public boolean isValid()
+  {
+    for (int i = 0; i < data.length(); ++i)
+    {
+      char c = data.charAt(i);
+      if (!(c == 'A' || c == 'G' || c == 'C' || c == 'T'))
+      {
+        return false;
+      }
+    }
+    return true; 
+  }
+  
+  /**
+   * Counts the number of occurrences of the given character
+   * in this strand.
+   * @param ch
+   *   character to count
+   * @return
+   *   number of occurrences of the given character
+   */
+  public int letterCount(char ch)
+  {
+    int count = 0;
+    for (int i = 0; i < data.length(); ++i)
+    {
+      if (data.charAt(i) == ch)
+      {
+        ++count;
+      }
+    }
+    return count;
+  }
+
+  /**
+   * Returns the length of this strand.
+   * @return
+   *   number of characters in this strand
+   */
+  public int length()
+  {
+    return data.length();
+  }
+  
+  /**
+   * Returns true if the two characters form a base pair
+   * ('A' with 'T' or 'C' with 'G').
+   * @param c1
+   *   potential character for a base pair
+   * @param c2
+   *   potential character for a base pair
+   * @return
+   *   true if the two characters are 'A' and 'T' or 'C' and 'G';
+   *   false otherwise
+   */
+  public boolean matches(char c1, char c2)
+  {
+    return (c1 == 'A' && c2 == 'T') || 
+           (c1 == 'T' && c2 == 'A') ||
+           (c1 == 'G' && c2 == 'C') ||
+           (c1 == 'C' && c2 == 'G');
+  }
+    
+  /**
+   * Returns a new DNAStrand that is the complement of
+   * this one; that is, 'A' is replaced with 'T' and so on.
+   * For example, if the data for this strand is "AGT", this
+   * method should return a new DNAStrand whose data is "TCA".
+   * @return
+   *   complement of this DNAStrand
+   */
+  public DNAStrand createComplement()
+  {
+    String newData = "";
+    for (int i = 0; i < data.length(); ++i)
+    {
+      newData += complement(data.charAt(i));
+    }
+    return new DNAStrand(newData);
+  }
+  
+  /**
+   * Returns the maximum possible number of matching base pairs
+   * when the given sequence is shifted left or right by any
+   * amount.
+   * @param other
+   *   the DNAStrand to align with this one
+   * @return
+   *   maximum possible number of matches 
+   */
+  public int findMaxPossibleMatches(DNAStrand other)
+  {
+    // we know that if there are no matches at all, the max is zero
+    int max = 0;
+    
+    // most you can shift right is the length of this strand, minus 1
+    for (int shift = 0; shift < data.length() - 1; ++shift)
+    {
+      int count = countMatchesWithRightShift(other, shift);
+      if (count > max)
+      {
+        max = count;
+      }
+    }
+    
+    // most you can shift left is length of other minus 1
+    for (int shift = 0; shift < other.data.length() - 1; ++shift)
+    {
+      int count = countMatchesWithLeftShift(other, shift);
+      if (count > max)
+      {
+        max = count;
+      }
+    }
+    return max;
+  }
+  
+  /**
+   * Returns the number of matching pairs when 'other' is shifted
+   * to the right by 'shift' spaces.
+   * @param other
+   *   the DNAStrand to align with this one
+   * @param shift
+   *   number of spaces to the right the other strand is shifted
+   * @return
+   */
+  public int countMatchesWithRightShift(DNAStrand other, int shift)
+  {
+    // call helper method
+    return countMatches(other, shift);
+  }
+
+  
+  /**
+   * Returns the number of matching pairs when 'other' is shifted
+   * to the left by 'shift' spaces.
+   * @param other
+   *   the DNAStrand to align with this one
+   * @param shift
+   *   number of spaces to the left the other strand is shifted
+   * @return
+   */
+  public int countMatchesWithLeftShift(DNAStrand other, int shift)
+  {
+    // call helper method with negative shift
+    return countMatches(other, -shift);
+  }
+  
+  /**
+   * Returns a string showing which characters in this strand
+   * are matched with 'other' when shifted right by the given amount.
+   * Non-matching characters are shown in lowercase.  For example,
+   * if this strand is "ATATGC" and the given strand is "TCC",
+   * shifted right by 2, then this method returns "atAtGc"
+   * @param other
+   *   the strand to which this one is being matched
+   * @param shift
+   *   the number of spaces the other strand is shifted to the right
+   * @return
+   *   string indicating where matches occur
+   */
+  public String findMatchesWithRightShift(DNAStrand other, int shift)
+  {
+    // call helper method
+    return findMatches(other, shift);
+  }
+
+  /**
+   * Returns a string showing which characters in this strand
+   * are matched with 'other' when shifted left by the given amount.
+   * Non-matching characters are shown in lowercase.
+   * @param other
+   *   the strand to which this one is being matched
+   * @param shift
+   *   the number of spaces the other strand is shifted to the left
+   * @return
+   *   string indicating where matches occur
+   */
+  public String findMatchesWithLeftShift(DNAStrand other, int shift)
+  {
+    // call helper method with negative shift
+    return findMatches(other, -shift);
+  }
+
+
+  /**
+   * Returns the number of matching pairs when other is aligned
+   * with this strand by shifting to the right by 'shift' spaces.
+   * That is, a character at index i in this strand is compared
+   * to the character at index (i - shift) in the other strand.
+   * This only works if (i - shift) is a valid index in the other strand,
+   * so indices less than the shift, or greater than the shift plus the
+   * other string's length, have to be ignored.
+   * 
+   * When 'shift' is a negative number the algorithm still works
+   * and correctly handles the case of a left shift.
+   * 
+   * In pseudocode:
+   * 
+   *   for each index i in this strand
+   *      if i - shift is a valid index in the other strand
+   *         if the character at index i matches the other character at index i - shift
+   *            add 1 to the count
+   * 
+   * @param other
+   *   the other DNAStrand being compared with this one
+   * @param shift
+   *   the amount to shift the other strand relative to this one
+   * @return
+   *   number of matches for the given alignment of the two strands
+   */
+  private int countMatches(DNAStrand other, int shift)
+  {
+    int count = 0;
+    for (int i = 0; i < data.length(); i += 1)
+    {
+      char c1 = data.charAt(i);
+
+      // make sure that (i - shift) is a valid index in the other strand
+      if (i >= shift && i < shift + other.length())
+      {
+        char c2 = other.data.charAt(i - shift);
+        if (matches(c1, c2))
+        {
+          count += 1;
+        }
+      }
+    }
+    return count;
+  }
+  
+  /**
+   * Returns a string representing matching pairs when other is aligned
+   * with this strand by shifting to the right by 'shift' spaces.
+   * Non-matching positions in this strand are displayed as lower-case
+   * characters. A character at index i in this strand is compared
+   * to the character at index (i - shift) in the other strand.
+   * This only works if (i - shift) is a valid index in the other strand,
+   * so for indices less than the shift, or greater than the shift plus the
+   * other string's length, we always produce a lower case character.
+   * 
+   * When 'shift' is a negative number the algorithm still works
+   * and correctly handles the case of a left shift.
+   * 
+   * In pseudocode:
+   * 
+   *   for each index i in this strand
+   *      if i - shift is a valid index in the other strand
+   *         if the character at index i matches the other character at index i - shift
+   *            append the character in upper-case
+   *         else
+   *            append the character in lower-case
+   *      else
+   *         append the character in lower-case
+   * 
+   * @param other
+   *   the other DNAStrand being compared with this one
+   * @param shift
+   *   the amount to shift the other strand relative to this one
+   * @return
+   *   string showing matches for the given alignment of the two strands
+   */
+  private String findMatches(DNAStrand other, int shift)
+  {
+    // start with an empty string and append a character each iteration
+    String result = "";
+    
+    for (int i = 0; i < data.length(); i += 1)
+    {
+      char c1 = data.charAt(i);
+      
+      // make sure that (i - shift) is a valid index in the other strand
+      if (i >= shift && i < shift + other.length())
+      {       
+        char c2 = other.data.charAt(i - shift);
+        if (matches(c1, c2))
+        {
+          // append upper-case character
+          result += c1;
+        }
+        else
+        {
+          // no match, append lower-case
+          result += ("" + c1).toLowerCase();
+        }
+      }
+      else
+      {
+        // out of range, append lower-case
+        result += ("" + c1).toLowerCase();
+      }
+    }
+    return result;
+  }  
+  
+  /**
+   * Helper method returns the character that is the complement of the given 
+   * character.
+   * @param ch
+   *   given character
+   * @return
+   *   complement of the given character
+   */
+  private char complement(char ch)
+  {
+    switch (ch)
+    {
+      case 'A': return 'T';
+      case 'T': return 'A';
+      case 'G': return 'C';
+      case 'C': return 'G';
+      default: return 'X';
+    }
+  }
+}

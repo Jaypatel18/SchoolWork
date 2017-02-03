@@ -1,0 +1,66 @@
+Quartus II
+Version 10.0 Build 218 06/27/2010 SJ Full Version
+12
+1005
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+161mux
+# storage
+db|4bit16to1Mux.(1).cnf
+db|4bit16to1Mux.(1).cnf
+# case_insensitive
+# source_file
+|usr|local|Altera|10.0|quartus|libraries|others|maxplus2|161mux.bdf
+3bf7d443a0f49509afd326562475c6
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+161mux:bit1
+161mux:bit2
+161mux:bit3
+161mux:bit4
+}
+# macro_sequence
+
+# end
+# entity
+4bit16to1Mux
+# storage
+db|4bit16to1Mux.(0).cnf
+db|4bit16to1Mux.(0).cnf
+# case_insensitive
+# source_file
+4bit16to1Mux.bdf
+3d4d1318225408fbd6e69d53c575b58
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# complete
+

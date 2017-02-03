@@ -1,0 +1,217 @@
+package hw2;
+
+/**
+ * Class representing a game of hangman.  This class encapsulates all
+ * aspects of the game state, including the secret word or phrase, the letters 
+ * guessed so far, and the number of wrong guesses.  A hangman game can 
+ * be constructed with a specified maximum number of wrong guesses 
+ * which defaults to DEFAULT_MAX_WRONG_GUESSES.
+ * 
+ * The secret word or phrase is represented as an array of HideableChar
+ * and may contain whitespace and arbitrary punctuation characters.
+ * Clients of this code decide how to represent the "hidden" characters to the
+ * user. Non-alphabetic characters are normally not hidden.
+ */
+public class Game
+{
+  /**
+   * Default value for the maximum number of wrong guesses.
+   */
+  
+  public static final int DEFAULT_MAX_WRONG_GUESSES = 7;
+  
+  /**
+   * String containing all the letters guessed so far.
+   */
+  private String lettersGuessed;
+  
+  /**
+   * The hidden word.
+   */
+  private HideableChar[] secretWord;
+  
+  /**
+   * Count of the number of wrong guesses.
+   */
+  private int wrongGuesses;
+  
+  /**
+   * The maximum number of wrong guesses for this game.
+   */
+  private final int maxWrongGuesses;
+  
+  /**
+   * Constructs a hangman game using the given word as the secret word
+   * and the default maximum number of wrong guesses.
+   * @param word
+   *   the secret word
+   */
+  public Game(String word)
+  {
+    // calls the other constructor
+    this(word, DEFAULT_MAX_WRONG_GUESSES);
+  }
+
+  /**
+   * Constructs a hangman game using the given word as the secret word
+   * and the given value as the maximum number of wrong guesses.
+   * @param word
+   *   the secret word
+   */  
+  public Game(String word, int maxGuesses)
+  {
+    secretWord = new HideableChar[word.length()];
+    for (int i = 0; i < word.length(); ++i) 
+    {
+      secretWord[i] = new HideableChar(word.charAt(i));
+    }
+    lettersGuessed = "";
+    maxWrongGuesses = maxGuesses;
+    wrongGuesses = 0;
+  }
+  
+  /**
+   * Returns the maximum number of wrong guesses for this game.
+   * @return
+   *   maximum number of wrong guesses
+   */
+  public int getMaxGuesses()
+  {
+    return maxWrongGuesses;
+  }
+  
+  /**
+   * Determines whether this game is over.
+   * @return
+   *   true if the player has won or has run out of guesses,
+   *   false otherwise
+   */ 
+  public boolean gameOver()
+  {
+    return won() || wrongGuesses >= maxWrongGuesses;
+  }
+  
+  /**
+   * Returns the number of wrong guesses made so far by the player.
+   * @return
+   *   number of wrong guesses
+   */ 
+  public int numWrongGuesses()
+  {
+    return wrongGuesses;
+  }
+  
+  /**
+   * Determines whether the player has guessed all the 
+   * letters in the secret word.
+   * @return
+   *   true if the player has won, false otherwise
+   */ 
+  public boolean won()
+  {
+    for (int i = 0; i < secretWord.length; ++i)
+    {
+      if (secretWord[i].isHidden())
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  /**
+   * Returns a string containing all the letters guessed
+   * so far by the player, without duplicates.
+   * @return
+   *   letters guessed so far by the player
+   */ 
+  public String lettersGuessed()
+  {
+    return lettersGuessed;
+  }
+  
+  /**
+   * Returns a sequence of <code>HideableChar</code>
+   * representing the secret word or phrase.  Letters that have not
+   * been guessed yet are hidden.  Non-alphabetic characters 
+   * (according to the method <code>Character.isAlphabetic</code>)
+   * are never hidden; the <code>HideableChar</code> 
+   * constructor will normally help enforce this condition.
+   * @return
+   *   displayed form of the secret word
+   */ 
+  public HideableChar[] getDisplayedWord()
+  {
+    return secretWord;
+  }
+  
+  /**
+   * Returns the complete secret word or phrase as a string.
+   * @return
+   *   the secret word or phrase
+   */  
+  public String getSecretWord()
+  {
+    String ret = "";
+    for (int i = 0; i < secretWord.length; ++i)
+    {
+      ret += secretWord[i].getHiddenChar();
+    }
+    return ret;
+  }
+  
+  /**
+   * Invoked by the player to guess a letter.  The behavior is as follows:
+   * <ul>
+   * <li>If the game is already over, this method
+   * does nothing and returns false. 
+   * <li>If the letter has previously been guessed by the player,
+   * records it as a wrong guess and returns false.
+   * <li>If the letter has not previously been guessed, but does not
+   * occur in the secret word or phrase, records it as a wrong guess 
+   * and returns false.
+   * <li>If the letter has not previously been guessed and does
+   * occur in the secret word, changes all occurrences of the
+   * letter in the secret word to "not hidden" and returns true.
+   * </ul>
+   * @param ch
+   *   the letter to check
+   * @return
+   *   true if the letter has not been guessed already and occurs in the
+   *   secret word, false otherwise
+   */  
+  public boolean guessLetter(char ch)
+  {
+    if (gameOver())
+    {
+      return false;
+    }
+    if (lettersGuessed.indexOf(ch) >= 0)
+    {
+      // it's been guessed already, count as a wrong guess
+      wrongGuesses += 1;
+      return false;
+    }
+    
+    // add to the guessed letters
+    lettersGuessed += ch;
+    
+    // check whether it's in the secret word
+    boolean correct = false;
+    for (int i = 0; i < secretWord.length; ++i)
+    {
+      if (secretWord[i].matches(ch))
+      {
+        secretWord[i].unHide();
+        correct = true;
+      }
+    }
+    
+    // if we didn't find it, count as a wrong guess
+    if (!correct)
+    {
+      wrongGuesses += 1;
+    }
+    return correct;
+  }
+}

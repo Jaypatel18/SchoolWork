@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, /home/jbpatel/Spring 2015 CPRE/Lab04/lab04work/lab04work.bdf
+source_file = 1, /home/jbpatel/Spring 2015 CPRE/Lab04/lab04work/Normalmode.v
+source_file = 1, /home/jbpatel/Spring 2015 CPRE/Lab04/lab04work/Normal.v
+source_file = 1, /home/jbpatel/Spring 2015 CPRE/Lab04/lab04work/power_saving.v
+source_file = 1, /home/jbpatel/Spring 2015 CPRE/Lab04/lab04work/multiplexer.v
+source_file = 1, /home/jbpatel/Spring 2015 CPRE/Lab04/lab04work/db/lab04work.cbx.xml
+design_name = lab04work
+instance = comp, \P~I\, P, lab04work, 1
+instance = comp, \T~I\, T, lab04work, 1
+instance = comp, \M~I\, M, lab04work, 1
+instance = comp, \H~I\, H, lab04work, 1
+instance = comp, \inst2|WideOr0~0\, inst2|WideOr0~0, lab04work, 1
+instance = comp, \AC~I\, AC, lab04work, 1

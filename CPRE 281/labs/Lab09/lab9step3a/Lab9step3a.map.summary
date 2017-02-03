@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Mon Apr  1 19:15:54 2013
+Quartus II 32-bit Version : 12.0 Build 232 07/05/2012 SP 1 SJ Full Version
+Revision Name : Lab9step3a
+Top-level Entity Name : Lab9step3a
+Family : Cyclone II
+Total logic elements : 3
+    Total combinational functions : 3
+    Dedicated logic registers : 0
+Total registers : 0
+Total pins : 4
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

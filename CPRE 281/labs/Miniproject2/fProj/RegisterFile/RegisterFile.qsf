@@ -1,0 +1,123 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2010 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II
+# Version 10.0 Build 218 06/27/2010 SJ Full Version
+# Date created = 19:34:22  December 04, 2012
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		RegisterFile_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C35F672C6
+set_global_assignment -name TOP_LEVEL_ENTITY RegisterFile
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 10.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:34:22  DECEMBER 04, 2012"
+set_global_assignment -name LAST_QUARTUS_VERSION "12.1 SP1"
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name BDF_FILE RegisterFile.bdf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_W26 -to CLOCK
+set_location_assignment PIN_T2 -to RA1A
+set_location_assignment PIN_P6 -to RA1B
+set_location_assignment PIN_P7 -to RA1C
+set_location_assignment PIN_T9 -to RA1D
+set_location_assignment PIN_R5 -to RA1E
+set_location_assignment PIN_R4 -to RA1F
+set_location_assignment PIN_R3 -to RA1G
+set_location_assignment PIN_U9 -to RA2A
+set_location_assignment PIN_U1 -to RA2B
+set_location_assignment PIN_U2 -to RA2C
+set_location_assignment PIN_T4 -to RA2D
+set_location_assignment PIN_R7 -to RA2E
+set_location_assignment PIN_R6 -to RA2F
+set_location_assignment PIN_T3 -to RA2G
+set_location_assignment PIN_Y23 -to LDA
+set_location_assignment PIN_AA25 -to LDB
+set_location_assignment PIN_AA26 -to LDC
+set_location_assignment PIN_Y26 -to LDD
+set_location_assignment PIN_Y25 -to LDE
+set_location_assignment PIN_U22 -to LDF
+set_location_assignment PIN_W24 -to LDG
+set_location_assignment PIN_R2 -to stateA
+set_location_assignment PIN_P4 -to stateB
+set_location_assignment PIN_P3 -to stateC
+set_location_assignment PIN_M3 -to stateE
+set_location_assignment PIN_M2 -to stateD
+set_location_assignment PIN_M5 -to stateF
+set_location_assignment PIN_M4 -to stateG
+set_location_assignment PIN_Y18 -to write
+set_location_assignment PIN_AF10 -to waA
+set_location_assignment PIN_AB12 -to waB
+set_location_assignment PIN_AC12 -to waC
+set_location_assignment PIN_AD11 -to waD
+set_location_assignment PIN_AE11 -to waE
+set_location_assignment PIN_V14 -to waF
+set_location_assignment PIN_V13 -to waG
+set_location_assignment PIN_AB23 -to 1A
+set_location_assignment PIN_V22 -to 1B
+set_location_assignment PIN_AC25 -to 1C
+set_location_assignment PIN_AC26 -to 1D
+set_location_assignment PIN_AB26 -to 1E
+set_location_assignment PIN_AB25 -to 1F
+set_location_assignment PIN_Y24 -to 1G
+set_location_assignment PIN_V20 -to 2A
+set_location_assignment PIN_V21 -to 2B
+set_location_assignment PIN_W21 -to 2C
+set_location_assignment PIN_Y22 -to 2D
+set_location_assignment PIN_AA24 -to 2E
+set_location_assignment PIN_AA23 -to 2F
+set_location_assignment PIN_AB24 -to 2G
+set_location_assignment PIN_AE23 -to LOAD0
+set_location_assignment PIN_AF23 -to LOAD1
+set_location_assignment PIN_AB21 -to LOAD2
+set_location_assignment PIN_AC22 -to LOAD3
+set_location_assignment PIN_AD22 -to LOAD4
+set_location_assignment PIN_AD21 -to LOAD5
+set_location_assignment PIN_AC21 -to LOAD6
+set_location_assignment PIN_AA14 -to LOAD7
+set_location_assignment PIN_Y13 -to LOAD8
+set_location_assignment PIN_AA13 -to LOAD9
+set_location_assignment PIN_AC14 -to LOAD10
+set_location_assignment PIN_AD15 -to LOAD11
+set_location_assignment PIN_AE15 -to LOAD12
+set_location_assignment PIN_AF13 -to LOAD13
+set_location_assignment PIN_AE13 -to LOAD14
+set_location_assignment PIN_AE12 -to LOAD15
+set_global_assignment -name CDF_FILE ../../../Chain4.cdf
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

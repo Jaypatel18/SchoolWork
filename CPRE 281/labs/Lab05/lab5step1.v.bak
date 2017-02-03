@@ -1,0 +1,11 @@
+module seven_seg_decoder(z,w,x,y,,a,b,c,d,e,f,g);
+inputw,x,y,z;
+outputa,b,c,d,e,f,g;
+assign a = (~z&~y&~x&w)|(~z&y&~x&~w)|(z&~y&x&w)|(z&y&~x&w);
+assign b = (~z&~x&y&w)|(~z&y&x&~w)|(z&~y&x&w)|(z&y&~x&~w)|(z&y&x);
+assign c = (~z&~y&x&~w)|(z&y&~x&~w)|(z&y&x);
+assign d = (~z&~y&~x&w)|(~z&y&~x&~w)|(z&~y&x&~w)|(w&y&x);
+assign e = (~z&~y&w)|(~z&y&~x)|(~z&y&x&w)|(z&~y&~x&w);
+assign f = (~z&~y&w)|(~z&~y&x)|(y&~z&x&w)|(z&y&~x&w);
+assign g = (~z&~y&~x)|(~z&y&x&w)|(z&y&~x&~w);
+endmodule

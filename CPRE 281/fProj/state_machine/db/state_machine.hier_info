@@ -1,0 +1,93 @@
+|state_machine
+Z3 <= Y3:inst9._Y3
+S => Y3:inst9.S
+S => Y2:inst.S
+S => Y1:inst10.S
+S => Y0:inst11.S
+Clk => inst1.CLK
+Clk => inst2.CLK
+Clk => inst3.CLK
+Clk => inst4.CLK
+Z2 <= Y2:inst._Y2
+Z1 <= Y1:inst10._Y1
+Z0 <= Y0:inst11._Y0
+
+
+|state_machine|Y3:inst9
+S => _Y3.IN0
+S => _Y3.IN0
+S => _Y3.IN0
+S => _Y3.IN0
+y3 => _Y3.IN1
+y2 => _Y3.IN1
+y2 => _Y3.IN1
+y2 => _Y3.IN1
+y2 => _Y3.IN1
+y1 => _Y3.IN1
+y1 => _Y3.IN1
+y1 => _Y3.IN1
+y1 => _Y3.IN1
+y0 => _Y3.IN1
+y0 => _Y3.IN1
+y0 => _Y3.IN1
+y0 => _Y3.IN1
+_Y3 <= _Y3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|state_machine|Y2:inst
+S => _Y2.IN0
+S => _Y2.IN0
+S => _Y2.IN0
+S => _Y2.IN0
+y3 => _Y2.IN1
+y2 => _Y2.IN1
+y2 => _Y2.IN1
+y2 => _Y2.IN1
+y2 => _Y2.IN1
+y1 => _Y2.IN1
+y1 => _Y2.IN1
+y1 => _Y2.IN1
+y1 => _Y2.IN1
+y0 => _Y2.IN1
+y0 => _Y2.IN1
+y0 => _Y2.IN1
+y0 => _Y2.IN1
+_Y2 <= _Y2.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|state_machine|Y1:inst10
+S => _Y1.IN0
+S => _Y1.IN0
+S => _Y1.IN0
+S => _Y1.IN0
+S => _Y1.IN0
+y3 => _Y1.IN1
+y3 => _Y1.IN1
+y2 => _Y1.IN1
+y2 => _Y1.IN1
+y2 => _Y1.IN1
+y2 => _Y1.IN1
+y1 => _Y1.IN1
+y1 => _Y1.IN1
+y1 => _Y1.IN1
+y1 => _Y1.IN1
+y1 => _Y1.IN1
+y1 => _Y1.IN1
+y0 => _Y1.IN1
+y0 => _Y1.IN1
+y0 => _Y1.IN1
+y0 => _Y1.IN1
+y0 => _Y1.IN1
+y0 => _Y1.IN1
+y0 => _Y1.IN1
+_Y1 <= _Y1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|state_machine|Y0:inst11
+S => _Y0.IN0
+S => _Y0.IN0
+y0 => _Y0.IN1
+y0 => _Y0.IN1
+_Y0 <= _Y0.DB_MAX_OUTPUT_PORT_TYPE
+
+

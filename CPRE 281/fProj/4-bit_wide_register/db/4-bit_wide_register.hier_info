@@ -1,0 +1,51 @@
+|4-bit_wide_register
+Q3 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+Clock => inst.CLK
+Clock => inst6.CLK
+Clock => inst8.CLK
+Clock => inst10.CLK
+LD => 21mux:inst5.S
+LD => 21mux:inst7.S
+LD => 21mux:inst9.S
+LD => 21mux:inst11.S
+D3 => 21mux:inst5.B
+Q2 <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+D2 => 21mux:inst7.B
+Q1 <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+D1 => 21mux:inst9.B
+Q0 <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+D0 => 21mux:inst11.B
+
+
+|4-bit_wide_register|21mux:inst5
+Y <= 5.DB_MAX_OUTPUT_PORT_TYPE
+A => 6.IN0
+S => 6.IN1
+S => 7.IN1
+B => 8.IN0
+
+
+|4-bit_wide_register|21mux:inst7
+Y <= 5.DB_MAX_OUTPUT_PORT_TYPE
+A => 6.IN0
+S => 6.IN1
+S => 7.IN1
+B => 8.IN0
+
+
+|4-bit_wide_register|21mux:inst9
+Y <= 5.DB_MAX_OUTPUT_PORT_TYPE
+A => 6.IN0
+S => 6.IN1
+S => 7.IN1
+B => 8.IN0
+
+
+|4-bit_wide_register|21mux:inst11
+Y <= 5.DB_MAX_OUTPUT_PORT_TYPE
+A => 6.IN0
+S => 6.IN1
+S => 7.IN1
+B => 8.IN0
+
+

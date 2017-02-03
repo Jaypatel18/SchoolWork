@@ -1,0 +1,35 @@
+|8-bit_p-in_s-out_r-s_regiser
+S <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Clk => inst3.CLK
+Clk => inst2.CLK
+Clk => inst1.CLK
+Clk => inst.CLK
+Clk => inst7.CLK
+Clk => inst6.CLK
+Clk => inst5.CLK
+Clk => inst4.CLK
+Load => inst21.IN0
+Load => inst13.IN0
+Load => inst14.IN0
+Load => inst15.IN0
+Load => inst16.IN0
+Load => inst17.IN0
+Load => inst18.IN0
+Load => inst19.IN0
+W7 => inst21.IN1
+W6 => inst13.IN1
+W5 => inst14.IN1
+W4 => inst15.IN1
+W3 => inst16.IN1
+W2 => inst17.IN1
+W1 => inst18.IN1
+W0 => inst19.IN1
+Q1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+Q2 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+Q3 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+Q4 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+Q5 <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+Q6 <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+Q7 <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+

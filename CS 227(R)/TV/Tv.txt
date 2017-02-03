@@ -1,0 +1,145 @@
+package mini1;
+
+/**
+ * Model of the channel and volume controls for a television.  A TV has
+ * a current channel and volume level.  The volume level ranges from 0.0 to 1.0.
+ * Channels range from zero through <em>channelMax - 1</em>, where <em>channelMax</em> is a 
+ * configurable value provided in the constructor.
+ * The volume is adjusted with methods <code>volumeUp</code> and 
+ * <code>volumeDown</code>, but never goes above 1.0 or below 0.0. The volume is 
+ * incremented or decremented by the value of the constant <code>VOLUME_INCREMENT</code>.
+ * The channel is
+ * adjusted with methods <code>channelDown</code> and <code>channelUp</code>, but
+ * never goes below zero or above <em>channelMax - 1</em>.  The channel can
+ * also be set directly with the <code>setChannel</code> method. The method
+ * <code>goToPreviousChannel</code> sets the channel to most recent previous channel 
+ * number. 
+ */
+public class TV
+{
+
+  /**
+   * Incremental increase or decrease in volume when the <code>volumeUp</code>
+   * or <code>volumeDown</code> methods are called.
+   */
+  public static final double VOLUME_INCREMENT = 0.07;
+  
+  /**
+   * Current channel.
+   */
+  private int channel;         // 0 through maxChannel - 1
+  
+  /**
+   * Current volume.
+   */
+  private double volume;       // 0 to 1
+  
+  /**
+   * Maximum channel is one less than this value.
+   */
+  private final int max;
+  
+  /**
+   * After any channel change operation, this represents the previous channel.
+   */
+  private int previousChannel;
+  
+  /**
+   * Constructs a new TV with available channels 0 through <code>givenChannelMax - 1</code>.
+   * Initially the channel is 0 and the volume is 0.5.
+   * @param givenChannelMax
+   *   upper bound for available channels
+   */
+
+  public TV(int givenChannelMax)
+  {
+    max = givenChannelMax;   
+    channel = 0;
+    volume = 0.5;
+    previousChannel = channel;
+  }
+
+  /**
+   * Changes the channel up by 1, wrapping around to zero if the current
+   * channel is <em>channelMax - 1</em>.
+   */
+  public void channelUp()
+  {
+    previousChannel = channel;
+    channel = (channel + 1) % max;    
+  }
+
+  /**
+   * Changes the channel down by 1, wrapping around to <em>channelMax - 1</em>
+   * if the current channel is zero.
+   */
+  public void channelDown()
+  {
+    previousChannel = channel;
+    channel = (channel - 1 + max) % max;    
+  }
+  
+  /**
+   * Raises the volume by <code>VOLUME_INCREMENT</code>, but not above 1.0.
+   */
+  public void volumeUp()
+  {
+    volume = volume + VOLUME_INCREMENT;
+    volume = Math.min(volume, 1.0); 
+  }
+  
+  /**
+   * Lowers the volume by <code>VOLUME_INCREMENT</code>, but not below 0.0.
+   */
+  public void volumeDown()
+  {
+    volume = volume - VOLUME_INCREMENT;
+    volume = Math.max(volume, 0.0);
+  }
+  
+  /**
+   * Sets the channel to the given channel number.  If the given value is
+   * greater than <em>channelMax - 1</em>, the channel is set to 
+   * <em>channelMax - 1</em>; if the given value is negative, the channel
+   * is set to zero.
+   * @param number
+   *   channel number to be set
+   */
+  public void setChannel(int number)
+  {
+    previousChannel = channel;
+    channel = Math.min(number, max - 1);
+    channel = Math.max(channel, 0);
+  }
+  
+  /**
+   * Sets the current channel to the most recent previous channel.  If no channel has
+   * ever been set for this TV using <code>channelUp</code>, <code>channelDown</code>
+   * or <code>setChannel</code>, this method sets the current channel to zero.
+   */
+  public void goToPreviousChannel()
+  {
+    channel = previousChannel;
+  }
+    
+  /**
+   * Returns the current volume for this TV.
+   * @return
+   *   current volume
+   */
+  public double getVolume()
+  {
+    return volume;  
+  }
+  
+  /**
+   * Returns the current channel for this TV.
+   * @return
+   *   current channel
+   */
+  public int getChannel()
+  {
+    return channel;
+  }
+
+}

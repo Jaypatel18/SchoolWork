@@ -1,0 +1,31 @@
+|Block1
+B <= inst12.DB_MAX_OUTPUT_PORT_TYPE
+W => mproj:inst1.W
+W => inst4.IN0
+X => mproj:inst1.X
+X => inst6.IN0
+X => inst9.IN1
+Y => mproj:inst1.Y
+Y => inst8.IN2
+Y => inst11.IN0
+Y => inst9.IN3
+Z => mproj:inst1.Z
+Z => inst8.IN3
+Z => inst10.IN0
+Z => inst9.IN2
+
+
+|Block1|mproj:inst1
+W => B.IN0
+W => B.IN0
+X => B.IN0
+X => B.IN1
+Y => B.IN1
+Y => B.IN1
+Y => B.IN1
+Z => B.IN1
+Z => B.IN1
+Z => B.IN1
+B <= B.DB_MAX_OUTPUT_PORT_TYPE
+
+

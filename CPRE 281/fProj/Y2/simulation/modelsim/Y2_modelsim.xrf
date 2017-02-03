@@ -1,0 +1,12 @@
+vendor_name = ModelSim
+source_file = 1, /home/liulige/CPRE281/fProj/Y2/Y2.v
+source_file = 1, /home/liulige/CPRE281/fProj/Y2/db/Y2.cbx.xml
+design_name = Y2
+instance = comp, \y3~I\, y3, Y2, 1
+instance = comp, \y1~I\, y1, Y2, 1
+instance = comp, \S~I\, S, Y2, 1
+instance = comp, \_Y2~0\, _Y2~0, Y2, 1
+instance = comp, \y0~I\, y0, Y2, 1
+instance = comp, \y2~I\, y2, Y2, 1
+instance = comp, \_Y2~1\, _Y2~1, Y2, 1
+instance = comp, \_Y2~I\, _Y2, Y2, 1

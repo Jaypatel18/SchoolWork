@@ -1,0 +1,103 @@
+|lab5step2
+1a <= lab5step1:inst.a
+z => lab5step1:inst.z
+y => lab5step1:inst.w
+x => lab5step1:inst.x
+w => lab5step1:inst.y
+1b <= lab5step1:inst.b
+1c <= lab5step1:inst.c
+1d <= lab5step1:inst.d
+1e <= lab5step1:inst.e
+1f <= lab5step1:inst.f
+1g <= lab5step1:inst.g
+2a <= lab5step1:inst1.a
+z1 => lab5step1:inst1.z
+w1 => lab5step1:inst1.w
+x1 => lab5step1:inst1.x
+y1 => lab5step1:inst1.y
+2b <= lab5step1:inst1.b
+2c <= lab5step1:inst1.c
+2d <= lab5step1:inst1.d
+2e <= lab5step1:inst1.e
+2f <= lab5step1:inst1.f
+2g <= lab5step1:inst1.g
+3a <= lab5step1:inst2.a
+z2 => lab5step1:inst2.z
+w2 => lab5step1:inst2.w
+x2 => lab5step1:inst2.x
+y2 => lab5step1:inst2.y
+3b <= lab5step1:inst2.b
+3c <= lab5step1:inst2.c
+3d <= lab5step1:inst2.d
+3e <= lab5step1:inst2.e
+3f <= lab5step1:inst2.f
+3g <= lab5step1:inst2.g
+4a <= lab5step1:inst3.a
+z3 => lab5step1:inst3.z
+w3 => lab5step1:inst3.w
+x3 => lab5step1:inst3.x
+y3 => lab5step1:inst3.y
+4b <= lab5step1:inst3.b
+4c <= lab5step1:inst3.c
+4d <= lab5step1:inst3.d
+4e <= lab5step1:inst3.e
+4f <= lab5step1:inst3.f
+4g <= lab5step1:inst3.g
+
+
+|lab5step2|lab5step1:inst
+z => Decoder0.IN3
+w => Decoder0.IN0
+x => Decoder0.IN1
+y => Decoder0.IN2
+a <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+b <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+c <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+d <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+e <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+f <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+g <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5step2|lab5step1:inst1
+z => Decoder0.IN3
+w => Decoder0.IN0
+x => Decoder0.IN1
+y => Decoder0.IN2
+a <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+b <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+c <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+d <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+e <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+f <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+g <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5step2|lab5step1:inst2
+z => Decoder0.IN3
+w => Decoder0.IN0
+x => Decoder0.IN1
+y => Decoder0.IN2
+a <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+b <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+c <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+d <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+e <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+f <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+g <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5step2|lab5step1:inst3
+z => Decoder0.IN3
+w => Decoder0.IN0
+x => Decoder0.IN1
+y => Decoder0.IN2
+a <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+b <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+c <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+d <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+e <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+f <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+g <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
