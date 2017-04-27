@@ -1,0 +1,74 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red243\green243\blue212;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c96078\c96078\c86275;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Welcome to SWI-Prolog (threaded, 64 bits, version 7.4.2)\cb1 \
+\cb3 SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.\cb1 \
+\cb3 Please run ?- license. for legal details.\cb1 \
+\uc0\u8232 \
+\cb3 For online help and background, visit http://www.swi-prolog.org\cb1 \
+\cb3 For built-in help, use ?- help(Topic). or ?- apropos(Word).\cb1 \
+\uc0\u8232 \
+\cb3 ?- working_directory(_,"/Users/jbpatel/Desktop"). \cb1 \
+\cb3 true.\cb1 \
+\uc0\u8232 \
+\cb3 ?- [jbpatel].\cb1 \
+\cb3 true.\cb1 \
+\uc0\u8232 \
+\cb3 ?- trip(malaga, madrid, R). \cb1 \
+\cb3 R = [100, 1.0, 1, [[malaga, iberia, madrid]]] \cb1 \
+\cb3 R = [210, 3.73, 1, [[malaga, iberia, valencia], [valencia, iberia, madrid]]] \cb1 \
+\cb3 R = [420, 5.58, 2, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, aircanada|...]]] \cb1 \
+\cb3 R = [440, 5.68, 1, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...]]] \cb1 \
+\cb3 R = [1965, 25.58, 2, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...], [london|...], [...|...]]] \cb1 \
+\cb3 R = [2065, 25.58, 2, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...], [london|...], [...|...]]] \cb1 \
+\cb3 R = [2115, 26.58, 3, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...], [london|...], [...|...]]] \cb1 \
+\cb3 R = [2115, 26.58, 2, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...], [london|...], [...|...]]] \cb1 \
+\cb3 R = [2215, 26.58, 3, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...], [london|...], [...|...]]] \cb1 \
+\cb3 R = [2265, 27.58, 2, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...], [london|...], [...|...]]] \cb1 \
+\cb3 false.\cb1 \
+\uc0\u8232 \
+\cb3 ?- tripk(malaga, madrid, 6, R).\cb1 \
+\cb3 R = [100, 1.0, 1, [[malaga, iberia, madrid]]] \cb1 \
+\cb3 R = [210, 3.73, 1, [[malaga, iberia, valencia], [valencia, iberia, madrid]]] \cb1 \
+\cb3 R = [420, 5.58, 2, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, aircanada|...]]] \cb1 \
+\cb3 R = [440, 5.68, 1, [[malaga, iberia, valencia], [valencia, iberia, barcelona], [barcelona, iberia|...]]] \cb1 \
+\cb3 false.\cb1 \
+\uc0\u8232 \
+\cb3 ?- tripk(malaga, Destination, 3, R).\cb1 \
+\cb3 Destination = valencia,\cb1 \
+\cb3 R = [130, 2.5, 1, [[malaga, iberia, valencia]]] \cb1 \
+\cb3 Destination = madrid,\cb1 \
+\cb3 R = [100, 1.0, 1, [[malaga, iberia, madrid]]] \cb1 \
+\cb3 Destination = barcelona,\cb1 \
+\cb3 R = [275, 2.75, 2, [[malaga, iberia, madrid], [madrid, aircanada, barcelona]]] \cb1 \
+\cb3 Destination = barcelona,\cb1 \
+\cb3 R = [295, 2.85, 1, [[malaga, iberia, madrid], [madrid, iberia, barcelona]]] \cb1 \
+\cb3 Destination = valencia,\cb1 \
+\cb3 R = [215, 2.65, 1, [[malaga, iberia, madrid], [madrid, iberia, valencia]]] \cb1 \
+\cb3 false.\cb1 \
+\uc0\u8232 \
+\cb3 ?- tripK(malaga, Destination, 1, R).\cb1 \
+\cb3 Correct to: "tripk(malaga,Destination,1,R)"? yes\cb1 \
+\cb3 false.\cb1 \
+\uc0\u8232 \
+\cb3 ?- multicitytrip(barcelona, malaga, valencia, R).\cb1 \
+\cb3 R = [375, 5.48, 2, [[barcelona, aircanada, madrid], [madrid, iberia, valencia], [valencia, iberia|...]]] \cb1 \
+\cb3 R = [395, 5.58, 1, [[barcelona, iberia, madrid], [madrid, iberia, valencia], [valencia, iberia|...]]] \cb1 \
+\cb3 R = [1920, 25.48, 2, [[barcelona, iberia, london], [london, aircanada, newyork], [newyork, iberia|...], [madrid|...], [...|...]]] \cb1 \
+\cb3 R = [2020, 25.48, 2, [[barcelona, iberia, london], [london, aircanada, newyork], [newyork, aircanada|...], [madrid|...], [...|...]]] \cb1 \
+\cb3 R = [2070, 26.48, 3, [[barcelona, iberia, london], [london, aircanada, newyork], [newyork, united|...], [madrid|...], [...|...]]] \cb1 \
+\cb3 R = [2070, 26.48, 2, [[barcelona, iberia, london], [london, united, newyork], [newyork, iberia|...], [madrid|...], [...|...]]] \cb1 \
+\cb3 R = [2170, 26.48, 3, [[barcelona, iberia, london], [london, united, newyork], [newyork, aircanada|...], [madrid|...], [...|...]]] \cb1 \
+\cb3 R = [2220, 27.48, 2, [[barcelona, iberia, london], [london, united, newyork], [newyork, united|...], [madrid|...], [...|...]]] \cb1 \
+\cb3 R = [270, 4.08, 1, [[barcelona, iberia, valencia], [valencia, iberia, malaga]]] \cb1 \
+\cb3 R = [355, 4.23, 1, [[barcelona, iberia, valencia], [valencia, iberia, madrid], [madrid, iberia|...]]] \cb1 \
+\cb3 false.\cb1 \
+\uc0\u8232 \
+\cb3 ?- \cb1 \
+}
