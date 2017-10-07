@@ -1,0 +1,32 @@
+ReadMe for Assignment 1.02 Due Date 09/14:
+
+How to tun my program:
+1. In command line go to the folder where my project is located at.
+2. Hit “Make clean” that will clean all the executables files.
+3. Type “Make” -> this will make the executable for you.
+4. Type in “./Assign1.02 - - load” in order to see the output
+5. Type in “./Assign1.02 - - save” in order to see the output
+6. There is also a way to check my hex files if you wanted to check.
+
+Information:
+In this project, I continued writing from the previous code and made sure that it is my last code was working and I found few bugs and fixed it. After fixing the previous code I wrote some methods for the new assignment, the main method was about Load and Save, I used a lot of in build c library functions for this class. In have created a lot of structs in order for me to allocate them later in the different methods that I created for the second assignment. In this project it takes the command line arguments and check if it exists and it will print out the output accordingly to the user input. 
+I have also wrote a lot of error handling in this assignment just in case if the user does not input what is required for the assignment, if the user does enter something wrong, I have printf statements that will give the error. 
+
+
+ReadMe for Assignment 1.01 Due Date 09/07:
+
+How to run my program:
+STEPS: I have already created an executable for this project so please go ahead and write:
+1. ./Assign1.01
+	a. This will give you the output as it is showed in the PDF, after waiting for a second this will 	change the order and print our a but different that what you saw earlier.
+2. Type in “make clean” in the command line and it will clean all the files that aren’t necessary.
+3. Type in “Make” this will show if there are any errors in the code.
+
+Information:
+In this project I will print out some dungeons, corridors and some grid that are randomly generated. 
+I used structs for this project, this struct will have width, height and size of x and y axis.
+In my first method print_dung; I used for loop for row and column separately and it will print the dung as you see that I have dung[r][c] and then into the next line. room_print() in this method I am doing similar to clean_r mentioned downwards and checking by looping with row and column.
+Second method is room_allocation; in this method I am checking if there are any rooms that are available in the side.
+struct clean_r in this method I am looping through and checking if one side is bigger than other and if it is then it will generate the room which is the struct
+clean_dung, in this method I am setting up some of the room and allocating them in the grid.
+Last method, I have few methods that I made for this project that includes: corridor; in this method I will be creating corridor and making sure that they don’t overlap with each other. I used if statement and while loop in order to check few cases and looping through and checking what box is on what side

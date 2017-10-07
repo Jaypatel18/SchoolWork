@@ -1,0 +1,76 @@
+#ifndef CHARACTER_H
+# define CHARACTER_H
+
+#ifdef __cplusplus
+extern "C"
+{
+  #endif
+  
+# include <stdint.h>
+
+# include "dims.h"
+
+#ifdef __cplusplus
+}
+  #endif
+
+#ifdef __cplusplus
+
+/*
+typedef struct dungeon dungeon_t;
+typedef struct npc npc_t;
+typedef struct pc pc_t;
+typedef struct dice_t dice_t;
+*/
+
+
+class character {
+ public:
+  char symbol;
+  pair_t position;
+  int32_t speed;
+  uint32_t alive;
+  /* Characters use to have a next_turn for the move queue.  Now that it is *
+   * an event queue, there's no need for that here.  Instead it's in the    *
+   * event.  Similarly, sequence_number was introduced in order to ensure   *
+   * that the queue remains stable.  Also no longer necessary here, but in  *
+   * this case, we'll keep it, because it provides a bit of interesting     *
+   * metadata: locally, how old is this character; and globally, how many   *
+   * characters have been created by the game.                              */
+  uint32_t sequence_number;
+ 
+}; 
+
+extern "C"
+{
+
+  #else
+  typedef struct character character;
+
+  #endif
+  typedef struct dungeon dungeon_t;
+  
+  uint32_t can_see(dungeon_t *d, character *voyeur, character *exhibitionist);
+  void character_delete(character *v);
+
+  void s_speed (character *ch, int32_t k);
+  void s_symbol (character *ch, char a);
+  void s_life(character *ch, int32_t m);
+  int s_y (character *ch, int8_t c);
+  int s_x (character *ch, int8_t b);
+  void seq (character *ch);
+  int32_t alive(character *ch);
+  int8_t x_value(character *ch);
+  int8_t y_value(character *ch);
+  char g_symbol(character *ch);
+  int32_t g_speed (character *ch);
+  uint32_t g_seq (character *ch);
+
+  character *getmalloc(character *ch);
+  
+
+  #ifdef __cplusplus
+}
+#endif
+
+#endif

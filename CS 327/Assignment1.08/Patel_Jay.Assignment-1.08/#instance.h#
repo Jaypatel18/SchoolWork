@@ -1,0 +1,48 @@
+#ifndef INSTANCE_H
+# define INSTANCE_H
+
+# include <stdint.h>
+# include <iostream>
+# include <stdint.h>
+# include "descriptions.h"
+# include "npc.h"
+# include <vector>
+# include <string>
+# include "dice.h"
+
+using namespace std;
+
+class mon{
+ public:
+  string name;
+  string description;
+  uint32_t color;
+  uint32_t abilities;
+  uint32_t speed;
+  uint32_t hitspeed;
+  dice damage;
+  char symbol;
+ 
+};
+
+class obj{
+ public:
+  string name;
+  string description;
+  object_type_t type;
+  uint32_t color;
+  uint32_t  hit;
+  dice  damage;
+  uint32_t dodge;
+  uint32_t defence;
+  uint32_t weight;
+  uint32_t speed;
+  uint32_t attrubute;
+  uint32_t value;
+};
+
+
+void monster_inst (dungeon_t *d, npc *m);
+void object_inst (dungeon_t *d);
+
+#endif
