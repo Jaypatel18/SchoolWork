@@ -1,7 +1,0 @@
-ReadMe File:
-
-In this program I worked on the main method, in the main method I am plotting some points in the middle of the graph and making them as either white or black. Once they reach the certain point I am making them to move to different direction. 
-
-I used if and else statement in order to determine what direction to move in what angle. 
-For example when its 0 it should move up and when its 90 it should move to the right and so on...
-
