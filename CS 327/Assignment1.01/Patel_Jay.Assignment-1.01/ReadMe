@@ -1,0 +1,17 @@
+ReadMe for Assignment 1.01 Due Date 09/07:
+
+How to run my program:
+STEPS: I have already created an executable for this project so please go ahead and write:
+1. ./Assign1.01
+	a. This will give you the output as it is showed in the PDF, after waiting for a second this will 	change the order and print our a but different that what you saw earlier.
+2. Type in “make clean” in the command line and it will clean all the files that aren’t necessary.
+3. Type in “Make” this will show if there are any errors in the code.
+
+Information:
+In this project I will print out some dungeons, corridors and some grid that are randomly generated. 
+I used structs for this project, this struct will have width, height and size of x and y axis.
+In my first method print_dung; I used for loop for row and column separately and it will print the dung as you see that I have dung[r][c] and then into the next line. room_print() in this method I am doing similar to clean_r mentioned downwards and checking by looping with row and column.
+Second method is room_allocation; in this method I am checking if there are any rooms that are available in the side.
+struct clean_r in this method I am looping through and checking if one side is bigger than other and if it is then it will generate the room which is the struct
+clean_dung, in this method I am setting up some of the room and allocating them in the grid.
+Last method, I have few methods that I made for this project that includes: corridor; in this method I will be creating corridor and making sure that they don’t overlap with each other. I used if statement and while loop in order to check few cases and looping through and checking what box is on what side
