@@ -1,0 +1,4 @@
+"input","expectedresult"
+"ok", 1
+"book", 2
+"flat", 0
