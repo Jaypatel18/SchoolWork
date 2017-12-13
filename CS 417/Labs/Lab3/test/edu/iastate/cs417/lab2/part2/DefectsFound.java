@@ -1,14 +1,13 @@
 package edu.iastate.cs417.lab2.part2;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import edu.iastate.cs417.lab2.demo.Counter;
 
 /**
  * 
- * @author Jay Patel
+ * @author Jay Patel.
  *
  */
 public class DefectsFound {
@@ -26,15 +25,20 @@ public class DefectsFound {
 	 * Long string small Os
 	 */
 	
-	@Test
+//	@Test
+//	public void Test1()
+//	{
+//		int r = c.countOs("This is a very long string with a lots of alphabets man. Hello");
+//		assertEquals(3,r);
+//	}
+	
+	@Test (expected = NullPointerException.class)
 	public void Test1()
 	{
-		int r = c.countOs("This is a very long string with a lots of alphabets man. Hello");
-		assertEquals(3,r);
+		c.countOs(null);
 	}
-	
 	/**
-	 * Tab that doesn't throw exception
+	 * Tab that doessn't throw exception
 	 * output: IllegalArgumentExcpetion
 	 */
 	@Test (expected = IllegalArgumentException.class)

@@ -20,13 +20,13 @@ import edu.iastate.cs417.lab2.util.FileUtil;
  * this is an automated test suite; it needs to run without user intervention.
  * Thus, the file name needs to always be known to the test.
  * 
- * @author Jay Patel
+ * @author Jay Patel.
  *
  */
 @RunWith(Parameterized.class)
 public class PartIITests {
 
-	private static final String filename = "testdata.txt";
+	private static final String filename = "Lab3TestData.txt";
 
 	private static int testId;
 	private String input;
