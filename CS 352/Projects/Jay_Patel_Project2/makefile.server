@@ -1,0 +1,4 @@
+HW2:server.c
+	gcc server.c  -lm -lcrypto -o s
+clean:
+	rm -f *~ *.o s

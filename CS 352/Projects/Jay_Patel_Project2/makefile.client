@@ -1,0 +1,4 @@
+HW2:client.c
+	gcc client.c  -lm -lcrypto -o c
+clean:
+	rm -f *~ *.o c

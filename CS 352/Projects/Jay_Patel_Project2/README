@@ -1,0 +1,14 @@
+How to run the code:
+
+1. Go to the folder using the cmd line
+2. Type in make clean if you want to remove the exectuables if needed. 
+3. In order to run, write make -f makefile.server to run the server in the first window
+4. In order to run, write make -f makefile.client to run the client in the second window
+
+
+Please note: I have StringEncoder code at the bottom of both client.c and server.c file this is because I was unable to access the files when I made a seperate class for StringEncoder.c .I had header file for StringEncoder and was including at the top of both client as well as server but it was still not working. The way I have it done works perfectly fine and does it job. 
+Also you need to run the server side first by typing in step3 and then ./s and while it is running you need to run the client side by typing in step4 and then ./c for multi threaded server you can have type in step3 and then in another terminal type step4 after going to the path where the filesa re located at. Once that is done you can have another terminal that and type in step4 again that way you can have multi threaded server.
+
+I am also keeping my exectuable files like "c" and "s" just in case if you need to see it. If you would like to remove those exectuables just type in make clean in the terminal and then write step3 and step4 in order to make new excetubale to compile and run/show the output of the code.
+
+I am also attaching outputs of my code just in case if you want to take a look at it. 

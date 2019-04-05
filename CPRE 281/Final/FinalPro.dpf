@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pin_planner>
+	<pin_info>
+		<pin name="d0" source="Pin Planner" >
+		</pin>
+		<pin name="A1" source="Pin Planner" >
+		</pin>
+		<pin name="A2" source="Pin Planner" >
+		</pin>
+		<pin name="A3" source="Pin Planner" >
+		</pin>
+		<pin name="A4" source="Pin Planner" >
+		</pin>
+		<pin name="B1" source="Pin Planner" >
+		</pin>
+		<pin name="B2" source="Pin Planner" >
+		</pin>
+		<pin name="B3" source="Pin Planner" >
+		</pin>
+		<pin name="B4" source="Pin Planner" >
+		</pin>
+		<pin name="C1" source="Pin Planner" >
+		</pin>
+		<pin name="C2" source="Pin Planner" >
+		</pin>
+		<pin name="C3" source="Pin Planner" >
+		</pin>
+		<pin name="C4" source="Pin Planner" >
+		</pin>
+	</pin_info>
+	<buses>
+	</buses>
+	<group_file_association>
+	</group_file_association>
+	<pin_planner_file_specifies>
+	</pin_planner_file_specifies>
+</pin_planner>

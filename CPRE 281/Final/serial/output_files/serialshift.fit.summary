@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sat Dec  6 17:24:11 2014
+Quartus II 64-Bit Version : 12.1 Build 243 01/31/2013 SP 1 SJ Full Version
+Revision Name : serialshift
+Top-level Entity Name : serialshift
+Family : Cyclone II
+Device : EP2C50F672C6
+Timing Models : Final
+Total logic elements : 44 / 50,528 ( < 1 % )
+    Total combinational functions : 43 / 50,528 ( < 1 % )
+    Dedicated logic registers : 35 / 50,528 ( < 1 % )
+Total registers : 35
+Total pins : 11 / 450 ( 2 % )
+Total virtual pins : 0
+Total memory bits : 0 / 594,432 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 172 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

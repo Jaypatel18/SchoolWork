@@ -1,0 +1,54 @@
+|serialshift
+s <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+Clock => clock_generator:inst30.CLK_IN
+D1 => inst.DATAIN
+w => inst8.IN1
+w => inst29.IN0
+w => inst11.IN1
+w => inst14.IN1
+w => inst17.IN1
+w => inst20.IN1
+w => inst23.IN1
+w => inst26.IN1
+D2 => inst7.IN1
+D3 => inst10.IN1
+D4 => inst13.IN1
+D5 => inst16.IN1
+D6 => inst19.IN1
+D7 => inst22.IN1
+D8 => inst25.IN1
+
+
+|serialshift|clock_generator:inst30
+CLK_OUT <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+CLK_IN => clock_divider_1024:inst101.CLK_IN
+
+
+|serialshift|clock_generator:inst30|clock_divider_1024:inst102
+CLK_OUT <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+CLK_IN => inst1.CLK
+CLK_IN => inst2.CLK
+CLK_IN => inst3.CLK
+CLK_IN => inst4.CLK
+CLK_IN => inst5.CLK
+CLK_IN => inst6.CLK
+CLK_IN => inst7.CLK
+CLK_IN => inst8.CLK
+CLK_IN => inst9.CLK
+CLK_IN => inst10.CLK
+
+
+|serialshift|clock_generator:inst30|clock_divider_1024:inst101
+CLK_OUT <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+CLK_IN => inst1.CLK
+CLK_IN => inst2.CLK
+CLK_IN => inst3.CLK
+CLK_IN => inst4.CLK
+CLK_IN => inst5.CLK
+CLK_IN => inst6.CLK
+CLK_IN => inst7.CLK
+CLK_IN => inst8.CLK
+CLK_IN => inst9.CLK
+CLK_IN => inst10.CLK
+
+

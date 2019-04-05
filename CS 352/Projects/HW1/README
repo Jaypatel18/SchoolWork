@@ -1,0 +1,16 @@
+README for CS 352 Assignment
+
+Author: Jay Patel
+
+Steps to run:
+
+1. Enter "make" 
+2. "./HW1" in order to compile
+3. If you want to clean the exe type in "make clean"
+
+Note you can run the commands in the child process
+
+
+
+
+

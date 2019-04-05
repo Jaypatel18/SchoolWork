@@ -1,0 +1,498 @@
+|FinalProject
+A <= seven_seg_decoder:inst1.A
+D2 => serialshift:inst6.D2
+D1 => serialshift:inst6.D1
+D3 => serialshift:inst6.D3
+D7 => serialshift:inst6.D7
+D4 => serialshift:inst6.D4
+D5 => serialshift:inst6.D5
+D6 => serialshift:inst6.D6
+D8 => serialshift:inst6.D8
+w => serialshift:inst6.w
+CLK => clock_generator:inst4.CLK_IN
+B <= seven_seg_decoder:inst1.B
+C <= seven_seg_decoder:inst1.C
+D <= seven_seg_decoder:inst1.D
+E <= seven_seg_decoder:inst1.E
+F <= seven_seg_decoder:inst1.F
+G <= seven_seg_decoder:inst1.G
+test <= serialshift:inst6.s
+a0 <= seven_seg_decoder:inst7.A
+decode1 => random:inst2.WR1
+decode2 => random:inst2.WR2
+a1 <= seven_seg_decoder:inst7.B
+a2 <= seven_seg_decoder:inst7.C
+a3 <= seven_seg_decoder:inst7.D
+a4 <= seven_seg_decoder:inst7.E
+a5 <= seven_seg_decoder:inst7.F
+b0 <= seven_seg_decoder:inst8.A
+b1 <= seven_seg_decoder:inst8.B
+b2 <= seven_seg_decoder:inst8.C
+b3 <= seven_seg_decoder:inst8.D
+b4 <= seven_seg_decoder:inst8.E
+b5 <= seven_seg_decoder:inst8.F
+b6 <= seven_seg_decoder:inst8.G
+c0 <= seven_seg_decoder:inst9.A
+c1 <= seven_seg_decoder:inst9.B
+c2 <= seven_seg_decoder:inst9.C
+c3 <= seven_seg_decoder:inst9.D
+c4 <= seven_seg_decoder:inst9.E
+c5 <= seven_seg_decoder:inst9.F
+c6 <= seven_seg_decoder:inst9.G
+a6 <= seven_seg_decoder:inst7.G
+e0 <= seven_seg_decoder:inst3.A
+e1 <= seven_seg_decoder:inst3.B
+e2 <= seven_seg_decoder:inst3.C
+e3 <= seven_seg_decoder:inst3.D
+e4 <= seven_seg_decoder:inst3.E
+e5 <= seven_seg_decoder:inst3.F
+e6 <= seven_seg_decoder:inst3.G
+
+
+|FinalProject|seven_seg_decoder:inst1
+Z => Decoder0.IN0
+Y => Decoder0.IN1
+X => Decoder0.IN2
+W => Decoder0.IN3
+A <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+B <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+C <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+D <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+E <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+F <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+G <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FinalProject|FinalPro:inst
+X4 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+CLK => inst1.CLK
+CLK => inst2.CLK
+CLK => inst3.CLK
+CLK => inst4.CLK
+S => Final:inst.S
+X3 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+X2 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+X1 <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FinalProject|FinalPro:inst|Final:inst
+S => X4.IN1
+S => X4.IN1
+S => X3.IN1
+S => X3.IN1
+S => X3.IN1
+S => X3.IN1
+S => X2.IN1
+S => X2.IN1
+S => X1.IN1
+S => X4.IN1
+S => X4.IN1
+S => X3.IN1
+S => X3.IN1
+S => X3.IN1
+S => X3.IN1
+S => X2.IN1
+S => X2.IN1
+S => X1.IN1
+Y4 => X3.IN0
+Y4 => X4.IN0
+Y4 => X4.IN0
+Y3 => X4.IN1
+Y3 => X4.IN1
+Y3 => X3.IN1
+Y2 => X4.IN1
+Y2 => X4.IN1
+Y2 => X4.IN1
+Y2 => X3.IN1
+Y2 => X3.IN1
+Y1 => X4.IN1
+Y1 => X4.IN1
+Y1 => X3.IN1
+Y1 => X3.IN1
+Y1 => X3.IN1
+Y1 => X4.IN1
+Y1 => X4.IN1
+Y1 => X3.IN1
+Y1 => X3.IN1
+Y1 => X2.IN1
+X4 <= X4.DB_MAX_OUTPUT_PORT_TYPE
+X3 <= X3.DB_MAX_OUTPUT_PORT_TYPE
+X2 <= X2.DB_MAX_OUTPUT_PORT_TYPE
+X1 <= X1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FinalProject|serialshift:inst6
+s <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+Clock => inst6.CLK
+Clock => inst28.CLK
+Clock => inst5.CLK
+Clock => inst4.CLK
+Clock => inst3.CLK
+Clock => inst2.CLK
+Clock => inst1.CLK
+Clock => inst.CLK
+D1 => inst.DATAIN
+w => inst8.IN1
+w => inst29.IN0
+w => inst11.IN1
+w => inst14.IN1
+w => inst17.IN1
+w => inst20.IN1
+w => inst23.IN1
+w => inst26.IN1
+D2 => inst7.IN1
+D3 => inst10.IN1
+D4 => inst13.IN1
+D5 => inst16.IN1
+D6 => inst19.IN1
+D7 => inst22.IN1
+D8 => inst25.IN1
+
+
+|FinalProject|clock_generator:inst4
+CLK_OUT <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+CLK_IN => clock_divider_1024:inst101.CLK_IN
+
+
+|FinalProject|clock_generator:inst4|clock_divider_1024:inst102
+CLK_OUT <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+CLK_IN => inst1.CLK
+CLK_IN => inst2.CLK
+CLK_IN => inst3.CLK
+CLK_IN => inst4.CLK
+CLK_IN => inst5.CLK
+CLK_IN => inst6.CLK
+CLK_IN => inst7.CLK
+CLK_IN => inst8.CLK
+CLK_IN => inst9.CLK
+CLK_IN => inst10.CLK
+
+
+|FinalProject|clock_generator:inst4|clock_divider_1024:inst101
+CLK_OUT <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+CLK_IN => inst1.CLK
+CLK_IN => inst2.CLK
+CLK_IN => inst3.CLK
+CLK_IN => inst4.CLK
+CLK_IN => inst5.CLK
+CLK_IN => inst6.CLK
+CLK_IN => inst7.CLK
+CLK_IN => inst8.CLK
+CLK_IN => inst9.CLK
+CLK_IN => inst10.CLK
+
+
+|FinalProject|seven_seg_decoder:inst7
+Z => Decoder0.IN0
+Y => Decoder0.IN1
+X => Decoder0.IN2
+W => Decoder0.IN3
+A <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+B <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+C <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+D <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+E <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+F <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+G <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FinalProject|random:inst2
+A1 <= register:inst4.Q0
+3 => register:inst4.LD3
+3 => register:inst3.LD3
+3 => register:inst1.LD3
+3 => register:inst.LD3
+2 => register:inst4.LD2
+2 => register:inst3.LD2
+2 => register:inst1.LD2
+2 => register:inst.LD2
+1 => register:inst4.LD1
+1 => register:inst3.LD1
+1 => register:inst1.LD1
+1 => register:inst.LD1
+WR1 => 2-4decoder:inst5.WR1
+WR2 => 2-4decoder:inst5.WR2
+0 => register:inst4.LD0
+0 => register:inst3.LD0
+0 => register:inst1.LD0
+0 => register:inst.LD0
+pin_name1 => register:inst4.CLOCK
+pin_name1 => register:inst3.CLOCK
+pin_name1 => register:inst1.CLOCK
+pin_name1 => register:inst.CLOCK
+A2 <= register:inst4.Q1
+A3 <= register:inst4.Q2
+A4 <= register:inst4.Q3
+B1 <= register:inst3.Q0
+B2 <= register:inst3.Q1
+B3 <= register:inst3.Q2
+B4 <= register:inst3.Q3
+C1 <= register:inst1.Q0
+C2 <= register:inst1.Q1
+C3 <= register:inst1.Q2
+C4 <= register:inst1.Q3
+D1 <= register:inst.Q0
+D2 <= register:inst.Q1
+D3 <= register:inst.Q2
+D4 <= register:inst.Q3
+
+
+|FinalProject|random:inst2|register:inst4
+Q3 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+CLOCK => inst.CLK
+CLOCK => inst3.CLK
+CLOCK => inst2.CLK
+CLOCK => inst1.CLK
+LOAD => 2to1Mux:inst5.s
+LOAD => 2to1Mux:inst8.s
+LOAD => 2to1Mux:inst7.s
+LOAD => 2to1Mux:inst6.s
+LD3 => 2to1Mux:inst5.b
+Q0 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+LD0 => 2to1Mux:inst8.b
+Q1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+LD1 => 2to1Mux:inst7.b
+Q2 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+LD2 => 2to1Mux:inst6.b
+
+
+|FinalProject|random:inst2|register:inst4|2to1Mux:inst5
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst4|2to1Mux:inst8
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst4|2to1Mux:inst7
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst4|2to1Mux:inst6
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|2-4decoder:inst5
+r0 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+WR1 => inst4.IN0
+WR1 => inst1.IN0
+WR1 => inst3.IN1
+WR2 => inst5.IN0
+WR2 => inst2.IN0
+WR2 => inst3.IN0
+r1 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+r2 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+r3 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FinalProject|random:inst2|register:inst3
+Q3 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+CLOCK => inst.CLK
+CLOCK => inst3.CLK
+CLOCK => inst2.CLK
+CLOCK => inst1.CLK
+LOAD => 2to1Mux:inst5.s
+LOAD => 2to1Mux:inst8.s
+LOAD => 2to1Mux:inst7.s
+LOAD => 2to1Mux:inst6.s
+LD3 => 2to1Mux:inst5.b
+Q0 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+LD0 => 2to1Mux:inst8.b
+Q1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+LD1 => 2to1Mux:inst7.b
+Q2 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+LD2 => 2to1Mux:inst6.b
+
+
+|FinalProject|random:inst2|register:inst3|2to1Mux:inst5
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst3|2to1Mux:inst8
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst3|2to1Mux:inst7
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst3|2to1Mux:inst6
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst1
+Q3 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+CLOCK => inst.CLK
+CLOCK => inst3.CLK
+CLOCK => inst2.CLK
+CLOCK => inst1.CLK
+LOAD => 2to1Mux:inst5.s
+LOAD => 2to1Mux:inst8.s
+LOAD => 2to1Mux:inst7.s
+LOAD => 2to1Mux:inst6.s
+LD3 => 2to1Mux:inst5.b
+Q0 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+LD0 => 2to1Mux:inst8.b
+Q1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+LD1 => 2to1Mux:inst7.b
+Q2 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+LD2 => 2to1Mux:inst6.b
+
+
+|FinalProject|random:inst2|register:inst1|2to1Mux:inst5
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst1|2to1Mux:inst8
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst1|2to1Mux:inst7
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst1|2to1Mux:inst6
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst
+Q3 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+CLOCK => inst.CLK
+CLOCK => inst3.CLK
+CLOCK => inst2.CLK
+CLOCK => inst1.CLK
+LOAD => 2to1Mux:inst5.s
+LOAD => 2to1Mux:inst8.s
+LOAD => 2to1Mux:inst7.s
+LOAD => 2to1Mux:inst6.s
+LD3 => 2to1Mux:inst5.b
+Q0 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+LD0 => 2to1Mux:inst8.b
+Q1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+LD1 => 2to1Mux:inst7.b
+Q2 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+LD2 => 2to1Mux:inst6.b
+
+
+|FinalProject|random:inst2|register:inst|2to1Mux:inst5
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst|2to1Mux:inst8
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst|2to1Mux:inst7
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|random:inst2|register:inst|2to1Mux:inst6
+out <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+s => inst1.IN0
+s => inst3.IN0
+b => inst1.IN1
+a => inst.IN0
+
+
+|FinalProject|seven_seg_decoder:inst8
+Z => Decoder0.IN0
+Y => Decoder0.IN1
+X => Decoder0.IN2
+W => Decoder0.IN3
+A <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+B <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+C <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+D <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+E <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+F <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+G <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FinalProject|seven_seg_decoder:inst9
+Z => Decoder0.IN0
+Y => Decoder0.IN1
+X => Decoder0.IN2
+W => Decoder0.IN3
+A <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+B <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+C <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+D <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+E <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+F <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+G <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FinalProject|seven_seg_decoder:inst3
+Z => Decoder0.IN0
+Y => Decoder0.IN1
+X => Decoder0.IN2
+W => Decoder0.IN3
+A <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+B <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+C <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+D <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+E <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+F <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+G <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+
+

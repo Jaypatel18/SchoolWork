@@ -1,0 +1,1109 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf130
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue0;\red0\green0\blue255;\red163\green21\blue21;
+\red43\green131\blue159;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 //  weatherio.c\cf0 \
+\cf2 //  C\cf0 \
+\cf2 //  Created by Jay Patel on 9/30/15.\cf0 \
+\cf2 //  Copyright \'a9 2015 Jay Patel. All rights reserved.\cf0 \
+\
+\cf3 #include \cf4 "weatherio.h"\cf3 \
+#include \cf4 <stdio.h>\cf3 \
+#include \cf4 <stdlib.h>\cf3 \
+#include \cf4 <string.h>\cf3 \
+#define maxline \cf0 500\cf3 \
+#define lines \cf0 500\cf3 \
+#define MAX_LENGTH \cf0 500\cf3 \
+\cf0 \
+\cf3 int\cf0  validate_format(\cf3 char\cf0  *file_name)\
+\{\
+    \cf3 char\cf0  *header;                       \cf2 // This is the pointer header that I have which will keep track of.\cf0 \
+    \cf3 char\cf0  **headers = (\cf3 char\cf0 **) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 *)*21);  \cf2 // mallocing the size\cf0 \
+    \cf3 void\cf0  **datas = (\cf3 void\cf0 **) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 *)*21);    \cf2 // mallocing the size\cf0 \
+    \cf3 int\cf0  numOfLines = 1;                                  \cf2 // this will keep track of my number of lines\cf0 \
+    \cf3 int\cf0  headerr = 0;                                     \cf2 // this will keep track of my headeer in the file\cf0 \
+    \cf3 int\cf0  i;                                               \cf2 // This is for the loop\cf0 \
+    \cf3 int\cf0  success =1;                                      \cf2 // if it passes\cf0 \
+    \cf3 char\cf0  str1[400];\
+\
+    \cf3 int\cf0  IDentification_Name = 0;                        \cf2 // I took all of this values from the csv file\cf0 \
+    \cf3 int\cf0  USAF = 0;\
+    \cf3 int\cf0  NCDC = 0;\
+    \cf3 int\cf0  Date = 0;\
+    \cf3 int\cf0  HrMn =0;\
+    \cf3 int\cf0  I=0;\
+    \cf3 int\cf0  Type =0;\
+    \cf3 int\cf0  QCP = 0;\
+    \cf3 int\cf0  Wind_Dir =0;\
+    \cf3 int\cf0  Wind_Dir_Q = 0;\
+    \cf3 int\cf0  Wind_Dir_I =0;\
+    \cf3 int\cf0  Wind_Spd_Q =0;\
+    \cf3 int\cf0  Wind_spd = 0;\
+    \cf3 int\cf0  Temp = 0;\
+    \cf3 int\cf0  Temp_Q=0;\
+    \cf3 int\cf0  Dewpt =1;\
+    \cf3 int\cf0  Dewpt_Q = 0;\
+    \cf3 int\cf0  Slp=0;\
+    \cf3 int\cf0  Slp_q=0;\
+    \cf3 int\cf0  RHx=0;\
+    \
+    \cf5 FILE\cf0  *fp = \cf5 fopen\cf0 (file_name, \cf4 "r"\cf0 );           \cf2 // opening the file and reading it.\cf0 \
+    \cf3 if\cf0 (fp == \cf3 NULL\cf0 ) \{                            \cf2 // checking if it is null\cf0 \
+        \cf5 fprintf\cf0 (\cf3 stderr\cf0 , \cf4 "Error"\cf0 );\
+        \cf3 return\cf0  -1;                              \cf2 // Just the error\cf0 \
+    \}\
+    \cf3 else\cf0  \cf3 if\cf0  (\cf5 fgets\cf0 (str1,\cf3 sizeof\cf0 (str1), fp) == \cf3 NULL\cf0 ) \{ \cf2 // scanning through the line\cf0 \
+        \cf3 return\cf0  numOfLines;                           \cf2 // returning the total number of lines.\cf0 \
+    \}\
+    \cf3 else\cf0 \{\
+        headerr = \cf5 read_header\cf0 (file_name,headers);  \cf2 // if none of the above is true then this will happen\cf0 \
+        \cf3 for\cf0 (i =0;i<headerr;i++)\{\
+            header = headers[i];\
+            \
+            \cf2 /**\
+             I am checking all the variables that are mentioned in csv file and comparing to the total length of the particaular name and then incrementing to one so that it will move to the next one. and checking it is is greater than 1 and if it is then its a success. But there are some words which starts with the same letters so I am comparing them with strlen and if it is has the same length that only it will exceute the particular varibale from csv file.\
+             */\cf0 \
+            \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "IDentification Name"\cf0 , 19)==0)\
+            \{\
+                IDentification_Name = IDentification_Name + 1;\
+                \
+                \cf3 if\cf0 (IDentification_Name > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0  (\cf5 strncmp\cf0 (header, \cf4 "USAF"\cf0 , 4) == 0)\{\
+                USAF = USAF + 1;\
+                \cf3 if\cf0 (USAF > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "NCDC"\cf0 , 4) == 0) \{\
+                NCDC = NCDC + 1;\
+                \cf3 if\cf0 (NCDC > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "Date"\cf0 , 4) == 0) \{\
+                Date = Date + 1;\
+                \cf3 if\cf0 (Date > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "HrMn"\cf0 , 4) == 0) \{\
+                HrMn = HrMn + 1;\
+                \cf3 if\cf0 (HrMn > 1)\{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "I"\cf0 , 1) == 0) \{\
+                I = I + 1;\
+                \cf3 if\cf0 (I > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "Type"\cf0 , 4) == 0) \{\
+                Type = Type + 1;\
+                \cf3 if\cf0 (Type > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "QCP"\cf0 , 3) == 0)\{\
+                QCP = QCP + 1;\
+                \cf3 if\cf0 (QCP > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (header, \cf4 "RHx"\cf0 , 3) == 0) \{\
+                RHx = RHx + 1;\
+                \cf3 if\cf0 (RHx > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Wind Spd"\cf0 , 8) == 0) \{\
+                Wind_spd = Wind_spd + 1;\
+                \cf3 if\cf0 (Wind_spd > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Wind Spd Q"\cf0 , 10) == 0) \{\
+                Wind_Spd_Q = Wind_Spd_Q + 1;\
+                \cf3 if\cf0 (Wind_Spd_Q > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Wind Dir I"\cf0 , 10) == 0) \{\
+                Wind_Dir_I = Wind_Dir_I + 1;\
+                \cf3 if\cf0 (Wind_Dir_I > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Wind Dir"\cf0 , 10) == 0) \{\
+                Wind_Dir = Wind_Dir + 1;\
+                \cf3 if\cf0 (Wind_Dir > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Wind Dir Q"\cf0 , 10) == 0) \{\
+                Wind_Dir_Q = Wind_Dir_Q + 1;\
+                \cf3 if\cf0 (Wind_Dir_Q > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+                    \
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Temp"\cf0 , 4) == 0) \{\
+                Temp = Temp + 1;\
+                \cf3 if\cf0 (Temp > 1)\{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Temp Q"\cf0 , 6) == 0) \{\
+                Temp_Q = Temp_Q + 1;\
+                \cf3 if\cf0 (Temp_Q > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header)  && \cf5 strncmp\cf0 (header, \cf4 "Dewpt"\cf0 , 5) == 0) \{\
+                Dewpt = Dewpt + 1;\
+                \cf3 if\cf0 (Dewpt > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header)  && \cf5 strncmp\cf0 (header, \cf4 "Dewpt Q"\cf0  , 7) == 0) \{\
+                Dewpt_Q = Dewpt_Q + 1;\
+                \cf3 if\cf0 (Dewpt_Q > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header)  && \cf5 strncmp\cf0 (header, \cf4 "Slp"\cf0 , 3) == 0) \{\
+                Slp = Slp + 1;\
+                \cf3 if\cf0 (Slp > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (header) && \cf5 strncmp\cf0 (header, \cf4 "Slp Q"\cf0 , 5) == 0) \{\
+                Slp_q = Slp_q + 1;\
+                \cf3 if\cf0 (Slp_q > 1) \{\
+                    \cf3 return\cf0  success;\
+                \}\
+            \}\
+            \cf3 else\cf0  \{\
+                \cf3 return\cf0  -1;\
+            \}\
+            \
+        \}\
+        \
+        \cf3 while\cf0 (\cf5 feof\cf0 (fp) == 0)\
+        \{\
+            numOfLines = numOfLines + 1;\
+            \cf3 int\cf0  wrong = \cf5 read_row\cf0 (fp, headers, datas);\
+            \cf3 if\cf0 (wrong == 0) \{\
+                \cf3 return\cf0  -1;\
+            \}\
+            \cf3 else\cf0 \{\
+                \cf3 return\cf0  numOfLines;\
+            \}\
+        \}\
+    \}\
+    \cf5 free\cf0 (datas);\
+    \cf5 free\cf0 (headers);\
+    \
+    \cf3 return\cf0  0;\
+\}\
+\
+\cf3 int\cf0  header_columns(\cf3 char\cf0 *file_name) \cf2 // this will return the number of data columns\cf0 \
+\{\
+    \cf3 int\cf0  value = 0;              \cf2 // this will keep track of sum of the values.\cf0 \
+    \cf3 char\cf0  ch;                    \cf2 // this wil keep track of chars that I use to loop through\cf0 \
+    \
+    \cf5 FILE\cf0  *fp = \cf5 fopen\cf0 (file_name, \cf4 "r"\cf0 ); \cf2 // I am going open the file and read it\cf0 \
+    \cf3 if\cf0 (fp == \cf3 NULL\cf0 ) \{                    \cf2 // checking if it is Null\cf0 \
+        \cf5 printf\cf0 (\cf4 "Error"\cf0 );\
+        \cf3 return\cf0  -1;                      \cf2 // if it is then it has an error so returns -1\cf0 \
+    \}\
+    \
+    \cf3 while\cf0 ((ch = \cf5 getc\cf0 (fp)) != '\\n')\{    \cf2 // looping through it and checking if it is not the last line\cf0 \
+        \cf3 if\cf0 (ch == ',') \{                 \cf2 // once it reaches the delimeter then it will move on to next\cf0 \
+            value++;\
+        \}\
+    \}\
+    \cf5 fclose\cf0 (fp);\
+    \cf3 return\cf0  value+1;                 \cf2 // returning the value+1 so it wont affect the last char\cf0 \
+\}\
+\
+\
+\cf3 int\cf0  read_header (\cf3 char\cf0  *file_name , \cf3 char\cf0  **header) \cf2 // this will return the number of data column in the file\cf0 \
+\{\
+    \cf5 FILE\cf0  *fp = \cf5 fopen\cf0 (file_name, \cf4 "r"\cf0 );           \cf2 // This will open the file and read it\cf0 \
+    \cf3 if\cf0 (fp == \cf3 NULL\cf0 ) \{                            \cf2 // if it is null then it will return -1\cf0 \
+        \cf3 return\cf0  -1;\
+    \}\
+    \
+    \cf3 int\cf0  count =0;\
+    header[0] = (\cf3 char\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 ) * 64);\
+    \cf3 char\cf0  *p;\
+     p = header[0];\
+    \cf3 char\cf0  c;\
+    \cf3 while\cf0  ((c=\cf5 getc\cf0 (fp)) != '\\n' && c!= \cf3 EOF\cf0  && c != '\\r')\{\
+        \cf3 if\cf0 (c != ',')\{\
+            *p++ = c;\
+        \}\
+        \cf3 else\cf0 \{\
+            *p = '\\0';\
+            count += 1;\
+            header[count] = (\cf3 char\cf0 *)\cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 ) * 64);\
+            p = header[count];\
+        \}\
+    \}\
+\
+        *p = '\\0';\
+    header[count + 1] = (\cf3 char\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 )*64);\
+    header[count+1] = \cf3 NULL\cf0 ;\
+    \
+    \cf5 fclose\cf0 (fp);\
+\
+    \cf3 return\cf0  count + 1;\
+\}\
+\
+\cf3 int\cf0  read_row(\cf5 FILE\cf0  *fp ,\cf3 char\cf0  **header , \cf3 void\cf0 **row)\
+\{\
+    \
+    \cf3 int\cf0  number = 0;\cf2 //\cf0 \
+    \cf3 char\cf0  *head;\cf2 //\cf0 \
+    \cf3 char\cf0 * dats;\cf2 //\cf0 \
+    \cf3 int\cf0  numOfHeader = 0;\cf2 //\cf0 \
+    \cf3 char\cf0  *pFromReadheader;\cf2 //\cf0 \
+    \cf3 char\cf0  c;\cf2 //\cf0 \
+    \cf3 int\cf0  count = 0;\
+    \cf3 long\cf0  leng, newlength;\
+    \cf3 int\cf0  newData =0;\
+    \cf3 float\cf0  doubleDat;\
+    \
+    \
+    \
+    \cf3 while\cf0  (header[numOfHeader] != \cf3 NULL\cf0 )\
+    \{\
+        numOfHeader = numOfHeader + 1;\
+    \}\
+    \
+    row[0] = (\cf3 char\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 )*64);\
+    \
+    pFromReadheader = row[0];\
+    \cf3 if\cf0 (fp == \cf3 NULL\cf0 )\
+    \{\
+        \cf5 printf\cf0 (\cf4 "Error"\cf0 );\
+        \cf3 return\cf0  -1;\
+    \}\
+    \
+    \cf3 while\cf0  ((c = \cf5 getc\cf0 (fp)) != '\\n' && c!= \cf3 EOF\cf0  && c!= '\\r')\
+    \{\
+        \cf3 if\cf0 (c!= ',')\
+        \{\
+            *pFromReadheader++ = c;\
+        \}\
+        \cf3 else\cf0 \
+        \{\
+            *pFromReadheader = '\\0';\
+            count = count + 1;\
+            header[count] = (\cf3 char\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 )*64);\
+            pFromReadheader = header[count];\
+        \}\
+    \}\
+    \
+    *pFromReadheader = '\\0';\
+    header[count + 1] = (\cf3 char\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 )*64);\
+    header[count+1] = \cf3 NULL\cf0 ;\
+    number = number + 1;\
+    \
+    \cf3 if\cf0 (numOfHeader != number)\
+    \{\
+        \cf3 return\cf0  1;\
+    \}\
+    \
+    \cf3 else\cf0 \
+    \{\
+        \cf3 int\cf0  i;\
+        \cf3 for\cf0 (i = 0 ; i < number ; i++)\
+        \{\
+            head = header [i];\
+            dats = row[i];\
+            \cf3 char\cf0  strings[20];\
+            \
+            \cf3 if\cf0 (\cf5 strncmp\cf0 (head, \cf4 "IDentificaiton Name"\cf0 , 19) == 0)\
+            \{\
+                row[0] = (\cf3 char\cf0 *)row[0];\
+                leng = \cf5 strlen\cf0 (dats);\
+                \cf3 char\cf0  space [leng];\
+                \cf3 int\cf0  j;\
+                \cf3 for\cf0 (j = 0;j<leng;j++)\
+                \{\
+                    space[j] = ' ';\
+                \}\
+                \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, space, leng) == 0)\
+                \{\
+                    \cf3 return\cf0  2;\
+                \}\
+            \}\
+            \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (head,\cf4 "USAF"\cf0 ,4) == 0)\
+            \{\
+                leng = \cf5 strlen\cf0 (dats);\
+                \cf3 if\cf0 (leng > 6)\
+                \{\
+                    \cf3 return\cf0  2;\
+                \}\
+                \cf3 int\cf0  nonValue = 0;\
+                \cf3 if\cf0 (leng != 1)\
+                \{\
+                    \cf3 for\cf0 (nonValue = 0 ; nonValue < leng ; nonValue++)\
+                    \{\
+                        \cf3 char\cf0  ch = dats[nonValue];\
+                        \cf3 if\cf0 (ch != '\\0')\
+                        \{\
+                            \cf3 break\cf0 ;\
+                        \}\
+                    \}\
+                \}\
+                \
+                newData = \cf5 atoi\cf0 (row[i]);\
+                \cf3 sprintf\cf0 (strings, \cf4 "%d"\cf0 , newData);\
+                newlength = \cf5 strlen\cf0 (strings);\
+                \cf3 if\cf0 (leng != newlength + nonValue)\
+                \{\
+                    \cf3 return\cf0  2;\
+                \}\
+                \cf3 else\cf0 \
+                \{\
+                    row[i] = (\cf3 int\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+                    *((\cf3 int\cf0 *) row[i]) = newData;\
+                \}\
+            \}\
+                \cf3 else\cf0  \cf3 if\cf0  (\cf5 strncmp\cf0 (head, \cf4 "NCDC"\cf0 , 4) == 0)\
+                \{\
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 if\cf0 (leng > 5)\
+                    \{\
+                        \cf3 return\cf0  2;\
+                    \}\
+                    row[i] = (\cf3 char\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+                    *((\cf3 char\cf0 *) row[i]) = newData;\
+                    \
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (head, \cf4 "Date"\cf0 , 4) == 0)\
+                \{\
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 if\cf0 (leng > 8)\
+                    \{\
+                        \cf3 return\cf0  2;\
+                    \}\
+                    newData = \cf5 atoi\cf0 (row[i]);\
+                    \cf3 sprintf\cf0 (strings, \cf4 "%d"\cf0 , newData);\
+                    newlength = \cf5 strlen\cf0 (strings);\
+                    \cf3 if\cf0 (leng != newlength)\
+                    \{\
+                        \cf3 return\cf0  2;\
+                    \}\
+                    \cf3 else\cf0 \
+                    \{\
+                        row[i] = (\cf3 int\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+                        *((\cf3 int\cf0 *) row[i]) = newData;\
+                    \}\
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (head, \cf4 "HrMn"\cf0 , 4)== 0)\
+                \{\
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 if\cf0 ( leng > 4)\
+                    \{\
+                        \cf3 return\cf0  2;\
+                    \}\
+                    \cf3 int\cf0  nonValue = 0;\
+                    \cf3 if\cf0 (leng != 1) \{\
+                        \cf3 for\cf0 (nonValue= 0 ; nonValue < leng ; nonValue++ )\
+                        \{\
+                            \cf3 char\cf0  ch = dats[nonValue];\
+                            \cf3 if\cf0 (ch != '\\0')\{\
+                                \cf3 break\cf0 ;\
+                            \}\
+                        \}\
+                    \}\
+                    newData = \cf5 atoi\cf0 (row[i]);\
+                    \cf3 sprintf\cf0 (strings, \cf4 "%d"\cf0 , newData);\
+                    newlength = \cf5 strlen\cf0 (strings);\
+                    \cf3 if\cf0 (leng !=newlength+nonValue)\
+                    \{\
+                        \cf3 return\cf0  2;\
+                    \}\
+                    \cf3 else\cf0  \{\
+                        row[i] = (\cf3 int\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+                        *((\cf3 int\cf0 *) row[i]) = newData;\
+                    \}\
+                    \
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (head, \cf4 "I"\cf0 , 1)== 0)\
+                \{\
+                    \
+                    \cf3 char\cf0 *cont[22] = \{\cf4 "1"\cf0 ,\cf4 "2"\cf0 ,\cf4 "3"\cf0 ,\cf4 "4"\cf0 ,\cf4 "5"\cf0 ,\cf4 "6"\cf0 ,\cf4 "7"\cf0 ,\cf4 "8"\cf0 ,\cf4 "A"\cf0 ,\cf4 "B"\cf0 ,\cf4 "C"\cf0 ,\cf4 "D"\cf0 ,\cf4 "E"\cf0 ,\cf4 "F"\cf0 ,\cf4 "G"\cf0 ,\cf4 "H"\cf0 ,\cf4 "I"\cf0 ,\cf4 "J"\cf0 ,\cf4 "K"\cf0 ,\cf4 "L"\cf0 ,\cf4 "M"\cf0 ,\cf4 "N"\cf0 \};\
+                    \cf3 int\cf0  conts = 0;\
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 for\cf0 (\cf3 int\cf0  j = 0 ; j <leng; j++)\
+                    \{\
+                        space[j] = ' ';\
+                    \}\
+                    \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, space, leng) == 0) \{\
+                        leng =0;\
+                    \}\
+                    \
+                    \cf3 if\cf0 (leng == 0)\
+                    \{\
+                        row[i] = \cf4 "9"\cf0 ;\
+                        leng = 1;\
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng != 1)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        \cf3 for\cf0 (\cf3 int\cf0  m = 0 ; m < 22 ; m++)\
+                        \{\
+                            \cf3 if\cf0 (\cf5 strncmp\cf0 (row[i], cont[m], 1) == 0)\
+                            \{\
+                                conts = 1;\
+                            \}\
+                        \}\
+                        \cf3 if\cf0 (conts != 1)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (\cf5 strncmp\cf0 (head, \cf4 "Type"\cf0 , 4) == 0) \{\
+                    \cf3 char\cf0  *cont [38] = \{\cf4 "AERO"\cf0 ,\cf4 "AUST"\cf0 ,\cf4 "AUTO"\cf0 ,\cf4 "BOGUS"\cf0 ,\cf4 "BRAZ"\cf0 ,\cf4 "COOPD"\cf0 ,\cf4 "COOPS"\cf0 ,\cf4 "CRB"\cf0 ,\cf4 "CRN05"\cf0 ,\cf4 "CRN15"\cf0 ,\cf4 "FM-12"\cf0 ,\cf4 "FM-13"\cf0 ,\cf4 "FM-14"\cf0 ,\cf4 "FM-15"\cf0 ,\cf4 "FM-16"\cf0 ,\cf4 "FM-18"\cf0 ,\cf4 "GREEN"\cf0 ,\cf4 "MESOS"\cf0 ,\cf4 "MEXIC"\cf0 ,\cf4 "NSRDB"\cf0 ,\cf4 "PCP15"\cf0 ,\cf4 "PCP60"\cf0 ,\cf4 "S-S-A"\cf0 ,\cf4 "SA-AU"\cf0 ,\cf4 "SAO"\cf0 ,\cf4 "SAOSP"\cf0 ,\cf4 "SHEF"\cf0 ,\cf4 "SMARS"\cf0 ,\cf4 "SOD"\cf0 ,\cf4 "SOM"\cf0 ,\cf4 "SURF"\cf0 ,\cf4 "SY-AE"\cf0 , \cf4 "SY-AU"\cf0 , \cf4 "SY-MT"\cf0 , \cf4 "SY-SA"\cf0 , \cf4 "WBO"\cf0 , \cf4 "WNO"\cf0 , \cf4 "99999"\cf0 \};\
+                    \
+                    \cf3 int\cf0  conts = 0;\
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 for\cf0 (\cf3 long\cf0  i=0;i<leng;i++)\{\
+                        space[i]= ' ';\
+                    \}\
+                    \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, space, leng)==0)\{\
+                        leng =0;\
+                    \}\
+                    \cf3 if\cf0 (leng == 0) \{\
+                        row[i] = \cf4 "99999"\cf0 ;\
+                        leng =5;\
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng >5)\{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        \cf3 for\cf0 (\cf3 int\cf0  l =0; l < 38;l++)\{\
+                            \cf3 if\cf0 (\cf5 strncmp\cf0 (row[i], cont[l], 5) == 0) \{\
+                                conts = 1;\
+                            \}\
+                        \}\
+                        \cf3 if\cf0 (conts != 1) \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                    \
+                \}\
+            \cf3 else\cf0  \cf3 if\cf0 ( \cf5 strlen\cf0 (head) == 8 && \cf5 strncmp\cf0 (head, \cf4 "Wind Dir"\cf0 , 8) == 0)\
+            \{\
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 for\cf0 (\cf3 int\cf0  j = 0 ; j < leng ; j ++)\
+                    \{\
+                        space[j] = ' ';\
+                    \}\
+                    \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, space, leng) == 0)\
+                    \{\
+                        leng = 0;\
+                    \}\
+                    \cf3 int\cf0  nonValue = 0;\
+                    \cf3 if\cf0 (leng != 1)\{\
+                        \cf3 for\cf0 (nonValue = 0 ; nonValue < leng ; nonValue ++)\
+                        \{\
+                            \cf3 char\cf0  ch = dats[nonValue];\
+                            \
+                            \cf3 if\cf0 (ch != '\\0')\
+                            \{\
+                                \cf3 break\cf0 ;\
+                            \}\
+                        \}\
+                    \}\
+                    \cf3 if\cf0 (leng == 0)\
+                    \{\
+                        row[i] = \cf4 "999"\cf0 ;\
+                        leng = 3;\
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng > 3)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        newData = \cf5 atoi\cf0 (row[i]);\
+                        \cf3 sprintf\cf0 (strings, \cf4 "%d"\cf0 , newData);\
+                        newlength = \cf5 strlen\cf0 (strings);\
+                        \cf3 if\cf0 (leng != newlength + nonValue)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        \cf3 else\cf0 \
+                        \{\
+                            row[i] = (\cf3 int\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+                            *((\cf3 int\cf0 *) row[i]) = newData;\
+                            \
+                        \}\
+                    \}\
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0  (\cf5 strlen\cf0 (head) == 10 && \cf5 strncmp\cf0 (head, \cf4 "Wind Dir Q"\cf0 , 10) == 0)\
+                \{\
+                    \cf3 char\cf0 *cont[9] = \{\cf4 "1"\cf0 ,\cf4 "2"\cf0 ,\cf4 "3"\cf0 ,\cf4 "4"\cf0 ,\cf4 "5"\cf0 ,\cf4 "6"\cf0 ,\cf4 "7"\cf0 ,\cf4 "9"\cf0 ,\cf4 "0"\cf0 \};\
+                    \cf3 int\cf0  elements = 0;\
+                    \cf3 int\cf0  conts;\
+                    \
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 char\cf0  ch[leng];\
+                    \cf3 for\cf0 (\cf3 int\cf0  j = 0;j<leng; j++)\
+                    \{\
+                        ch[j] = ' ';\
+                    \}\
+                    \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, ch, leng) == 0)\
+                    \{\
+                        leng = 0;\
+                    \}\
+                    \cf3 if\cf0 (leng == 0)\
+                    \{\
+                        row[i] = \cf4 "9"\cf0 ;\
+                        leng = 1;\
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng > 1)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        \cf3 for\cf0 (\cf3 int\cf0  l = 0 ; l < 9 ; l ++)\
+                        \{\
+                            \cf3 if\cf0 (\cf5 strncmp\cf0 (row[i], cont[l], 1) == 0)\
+                            \{\
+                                elements = 1;\
+                            \}\
+                        \}\
+                        \cf3 if\cf0 (elements != 1)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                    elements = \cf5 atoi\cf0 (row[i]);\
+                    row[i] = (\cf3 int\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+                    *((\cf3 int\cf0 *) row) = conts;\
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (head) == 10 && \cf5 strncmp\cf0 (head, \cf4 "Wind Dir I"\cf0 , 10) == 0)\
+                \{\
+                    \cf3 char\cf0  *cont[9] = \{\cf4 "A"\cf0 ,\cf4 "B"\cf0 ,\cf4 "C"\cf0 ,\cf4 "H"\cf0 ,\cf4 "N"\cf0 ,\cf4 "Q"\cf0 ,\cf4 "R"\cf0 ,\cf4 "T"\cf0 ,\cf4 "V"\cf0 \};\
+                    \cf3 int\cf0  elements = 0;\
+                    leng = \cf5 strlen\cf0 (dats);\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 for\cf0 (\cf3 int\cf0  j=0;j<leng;j++)\
+                    \{\
+                        space[j] = ' ';\
+                    \}\
+                    \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, space, leng) == 0)\
+                    \{\
+                        leng = 0;\
+                    \}\
+                    \cf3 if\cf0 (leng == 0)\
+                    \{\
+                        row[i] = \cf4 "9"\cf0 ;\
+                        leng = 1;\
+                    \
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng >1 )\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        \cf3 for\cf0 (\cf3 int\cf0  k =0;k < 9; k++)\
+                        \{\
+                            \cf3 if\cf0 (\cf5 strncmp\cf0 (row[i], cont[k], 1)==0)\
+                            \{\
+                                elements = 1;\
+                            \}\
+                        \}\
+                        \cf3 if\cf0 (elements != 1)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (head)== 8 && \cf5 strncmp\cf0 (head, \cf4 "Wind Spd"\cf0 , 8) == 0)\
+                \{\
+                    leng = \cf5 strlen\cf0 (dats);\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 int\cf0  add = 0;\
+                    \cf3 int\cf0  sub = 0;\
+                    \cf3 int\cf0  front =0;\
+                    \cf3 int\cf0  d = 0;\
+                    \cf3 int\cf0  c =0;\
+                    \cf3 int\cf0  Full = 0;\
+                    \cf3 int\cf0  symbol = 0;\
+                    \cf3 char\cf0 *right = (\cf3 char\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 char\cf0 )*50);\
+                    \
+                    \cf3 if\cf0 (dats[0] == '+')\
+                    \{\
+                        symbol = symbol + 1;\
+                        add = add + 1;\
+                        \cf3 if\cf0 (dats[1] == '.')\
+                        \{\
+                            front =1;\
+                            right[0] = '0';\
+                            c = 1;\
+                        \}\
+                    \}\
+                    \cf3 else\cf0  \cf3 if\cf0  (dats[0] == '-')\
+                    \{\
+                        symbol = symbol + 1;\
+                        sub = sub + 1;\
+                        right[0] = '-';\
+                        c = 1;\
+                        \
+                        \cf3 if\cf0 (dats[1] == '.')\
+                        \{\
+                            front = 1;\
+                            right[1] = '0';\
+                            c = 2;\
+                        \}\
+                        \
+                    \}\
+                    \cf3 else\cf0  \cf3 if\cf0 (dats[0] == '.')\
+                    \{\
+                        front = 1;\
+                        right[0] = '0';\
+                        c =1;\
+                    \}\
+                    \cf3 for\cf0 (\cf3 int\cf0  k = 0 ; k <leng ; k ++)\
+                    \{\
+                        space[k] = ' ';\
+                        \cf3 if\cf0 (dats[k]== '.')\
+                        \{\
+                            Full =  Full + 1;\
+                        \}\
+                    \}\
+                    \cf3 if\cf0 (symbol != 0)\
+                    \{\
+                        d += 1;\
+                    \}\
+                    \
+                    \cf3 for\cf0 (\cf3 int\cf0  l = d ; l<leng; l++)\
+                    \{\
+                        right[c] = dats[d];\
+                        c++;\
+                        d++;\
+                    \}\
+                    \
+                    \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, space, leng) == 0)\
+                    \{\
+                        leng =0;\
+                    \}\
+                    \cf3 if\cf0 (leng == 0)\
+                    \{\
+                        row[i] = \cf4 "9999"\cf0 ;\
+                        leng = 4;\
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng-Full>4)\
+                        \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        doubleDat = \cf5 atof\cf0 (row[i]);\
+                        \cf3 sprintf\cf0 (strings, \cf4 "%f"\cf0 , doubleDat);\
+                        \
+                        \cf3 if\cf0 ((symbol == 0 && Full == 0 && \cf5 strncmp\cf0 (dats, strings, leng-1)!= 0) || ((add != 0 || Full != 0) && \cf5 strncmp\cf0 (right, strings, leng-symbol) != 0) ) \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                    row[i] = (\cf3 float\cf0  *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 float\cf0 ));\
+\cf2 //                    *((float*) row[i]) = doubleDat;\cf0 \
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (\cf5 strlen\cf0 (head)== 10 && \cf5 strncmp\cf0 (head, \cf4 "Wind Spd Q"\cf0 , 10) ==0) \{\
+                    leng = \cf5 strlen\cf0 (row[i]);\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 for\cf0 (\cf3 int\cf0  k = 0; k < leng;k++) \{\
+                        space[k]= ' ';\
+                    \}\
+                    \cf3 if\cf0 (\cf5 strncmp\cf0 (dats, space, leng)==0)\{\
+                        leng =0;\
+                    \}\
+                    \cf3 if\cf0 (leng == 0 )\{\
+                        row[i] = \cf4 "9"\cf0 ;\
+                        leng =1;\
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (\cf5 strncmp\cf0 (row[i], \cf4 "8"\cf0 , 1)==0) \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        leng = \cf5 strlen\cf0 (row[i]);\
+                        \cf3 if\cf0 (leng >1)\{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        newData = \cf5 atoi\cf0 (row[i]);\
+                        \cf3 sprintf\cf0 (strings, \cf4 "%d"\cf0 , newData);\
+                        newlength = \cf5 strlen\cf0 (strings);\
+                        \cf3 if\cf0 (leng != newlength)\{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                        row[i] = (\cf3 int\cf0 *) \cf5 malloc\cf0 (\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+                        *((\cf3 int\cf0 *) row[i]) = newData;\
+                \}\
+    \
+        \
+                    \cf3 else\cf0  \cf3 if\cf0  ( \cf5 strlen\cf0 (head) == 4 && \cf5 strncmp\cf0 (head, \cf4 "Temp"\cf0 , 4) == 0)\
+                    \{\
+                        leng = \cf5 strlen\cf0 (dats);\
+                        \cf3 char\cf0  space[leng];\
+                        \cf3 int\cf0  fullStop =0;\
+                        \cf3 int\cf0  symbols =0;\
+                        \cf3 int\cf0  indD =0;\
+                        \cf3 int\cf0  indC =0;\
+                        \cf3 int\cf0  adding =0;\
+                        \cf3 int\cf0  substracting =0;\
+                        \cf3 char\cf0  *correction =(\cf3 char\cf0 *) malloc(\cf3 sizeof\cf0 (\cf3 char\cf0 )*50);\
+                        \cf3 if\cf0 (dats[0] == '+')\{\
+                            symbols+=1;\
+                            adding +=1;\
+                            \cf3 if\cf0 (dats[1] == '.')\
+                            \{\
+                                fullStop = 1;\
+                                correction[0] = '0';\
+                                indC = 1;\
+                            \}\
+                        \}\
+                        \cf3 else\cf0  \cf3 if\cf0  (dats[0] == '-')\{\
+                            symbols += 1;\
+                            substracting += 1;\
+                            correction[0]= '-';\
+                            indC = 1;\
+                            \cf3 if\cf0 (dats[1] == '-') \{\
+                                fullStop = 1;\
+                                correction[1]='0';\
+                                indC = 2;\
+                            \}\
+                        \}\
+                        \cf3 else\cf0  \cf3 if\cf0 (dats[0] == '.') \{\
+                            fullStop = 1;\
+                            correction[0] = '0';\
+                            indC = 1;\
+                        \}\
+                        \cf3 for\cf0 (\cf3 int\cf0  i = 0;i< leng;i++)\{\
+                            space[leng]= ' ';\
+                            \cf3 if\cf0 (dats[i] == '.' ) \{\
+                                fullStop += 1;\
+                            \}\
+                        \}\
+                        \cf3 if\cf0 (symbols != 0)\{\
+                            indD += 1;\
+                        \}\
+                        \cf3 for\cf0 (\cf3 int\cf0  j = indD ; j< leng; j++)\{\
+                            correction[indC++] = dats[indD++];\
+                        \}\
+                        \cf3 if\cf0 (strncmp(dats, space, leng)==0) \{\
+                            leng =0;\
+                        \}\
+                        \cf3 if\cf0 (leng == 0) \{\
+                            row[i]= \cf4 "99999"\cf0 ;\
+                            leng =5;\
+                        \}\
+                        \cf3 else\cf0 \{\
+                            \cf3 if\cf0 (leng-fullStop>5)\{\
+                                \cf3 return\cf0  2;\
+                            \}\
+                            doubleDat = atof((\cf3 char\cf0 *) row[i]);\
+                            sprintf(strings, \cf4 "%f"\cf0 , doubleDat);\
+                            \cf3 if\cf0 ((symbols == 0 && fullStop == 0 && strncmp(dats, strings, leng-1) != 0) || ((adding != 0 || fullStop != 0) && strncmp(correction, strings, leng-symbols) != 0)) \{\
+                                \cf3 return\cf0  2;\
+                            \}\
+                        \}\
+                        row[i] = (\cf3 float\cf0 *) malloc(\cf3 sizeof\cf0 (\cf3 float\cf0 ));\
+                        *((\cf3 float\cf0 *)row[i]) = doubleDat;\
+                    \
+                    \}\
+\
+                    \cf3 else\cf0  \cf3 if\cf0 (strlen(head)==6 && strncmp(head, \cf4 "Temp Q"\cf0 , 6) == 0)\
+                    \{\
+                    \cf3 char\cf0  *contents[16] = \{\cf4 "0"\cf0 ,\cf4 "1"\cf0 ,\cf4 "2"\cf0 ,\cf4 "3"\cf0 ,\cf4 "4"\cf0 ,\cf4 "5"\cf0 ,\cf4 "6"\cf0 ,\cf4 "7"\cf0 ,\cf4 "8"\cf0 ,\cf4 "9"\cf0 ,\cf4 "A"\cf0 ,\cf4 "C"\cf0 ,\cf4 "I"\cf0 ,\cf4 "M"\cf0 ,\cf4 "P"\cf0 ,\cf4 "R"\cf0 ,\cf4 "U"\cf0 \};\
+                    \cf3 int\cf0  elements =0;\
+                    leng = strlen(dats);\
+                    \cf3 if\cf0 (leng >1) \{\
+                        \cf3 return\cf0  2;\
+                    \}\
+                    \cf3 for\cf0 (\cf3 int\cf0  p =0 ; p< 16;p++)\{\
+                        \cf3 if\cf0 (strncmp(row[i], contents[p], 1)==0)\{\
+                            elements = 1;\
+                        \}\
+                    \}\
+                    \cf3 if\cf0 (elements != 1) \{\
+                        \cf3 return\cf0  2;\
+                    \}\
+                    \
+        \}\
+                \
+        \
+                \cf3 else\cf0  \cf3 if\cf0 (strlen(head) == 5 && strncmp(head, \cf4 "Dewpt"\cf0 , 5) == 0)\
+                \{\
+                    \cf3 int\cf0  stop = 0;\
+                    \cf3 int\cf0  sym = 0;\
+                    \cf3 int\cf0  indexD = 0;\
+                    \cf3 int\cf0  indexC = 0;\
+                    \cf3 int\cf0  pos =0;\
+                    \cf3 int\cf0  neg =0;\
+                    \cf3 int\cf0  front =0;\
+                    \cf3 char\cf0 * correct = (\cf3 char\cf0 *) malloc(\cf3 sizeof\cf0 (\cf3 char\cf0 )*50);\
+                    \cf3 char\cf0  space[leng];\
+                    leng = strlen(dats);\
+                    \
+                    \cf3 if\cf0 (dats[0] == '+')\{\
+                        sym += 1;\
+                        pos += 1;\
+                        \cf3 if\cf0 (dats[1] == '.') \{\
+                            front  = 1;\
+                            correct[0] = '0';\
+                            indexC =1;\
+                        \}\
+                    \}\
+                    \cf3 else\cf0  \cf3 if\cf0 (dats[0] == '-') \{\
+                        sym += 1;\
+                        neg +=1;\
+                        correct[0] = '-';\
+                        indexC = 1;\
+                        \cf3 if\cf0 (dats[1] == '.' )\{\
+                            front =1;\
+                            correct[1]='0';\
+                            indexC =2;\
+                        \}\
+                    \}\
+                    \cf3 else\cf0  \cf3 if\cf0 (dats[0] == '.') \{\
+                        front = 1;\
+                        correct[0]= '0';\
+                        indexC =1;\
+                        \
+                    \}\
+                    \cf3 for\cf0 (\cf3 int\cf0  j = 0; j <leng;j++)\{\
+                        space[j] = ' ';\
+                        \cf3 if\cf0 (dats[j]== '.')\{\
+                            stop +=1;\
+                        \}\
+                    \}\
+                    \cf3 if\cf0 (sym != 0)\{\
+                        indexD += 1;\
+                    \}\
+                    \cf3 for\cf0 (\cf3 int\cf0  j = indexD;j < leng;j++)\{\
+                        correct[indexC]= dats[indexD];\
+                        indexC++;\
+                        indexD++;\
+                    \}\
+                    \cf3 if\cf0 (strncmp(dats, space, leng)==0)\{\
+                        leng =0;\
+                    \}\
+                    \cf3 if\cf0 (leng == 0) \{\
+                        row[i]= \cf4 "99999"\cf0 ;\
+                        leng = 5;\
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng-stop-sym>5 || sym> 1 || sym > 1) \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        doubleDat = atoof((\cf3 char\cf0 *)row[i]);\
+                        sprintf(strings, \cf4 "%f"\cf0 ,doubleDat);\
+                        \cf3 if\cf0 ((sym == 0 && stop == 0 && leng > 1 && strncmp(dats, strings, leng-1) != 0) || (sym == 0 && stop == 0 && leng == 1 && strncmp(dats, strings, leng) != 0) || ((pos != 0 || stop != 0) && strncmp(correct,strings, leng-sym) != 0)) \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                    row[i]= (\cf3 float\cf0 *) malloc(\cf3 sizeof\cf0 (\cf3 float\cf0 ));\
+                    *((\cf3 float\cf0 *) row[i]) = doubleDat;\
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (strlen(head)==7 && strncmp(head, \cf4 "Dewpt Q"\cf0 , 7) == 0) \{\
+                    \cf3 char\cf0 * conts[16] = \{\cf4 "0"\cf0 ,\cf4 "1"\cf0 ,\cf4 "2"\cf0 ,\cf4 "3"\cf0 ,\cf4 "4"\cf0 ,\cf4 "5"\cf0 ,\cf4 "6"\cf0 ,\cf4 "7"\cf0 ,\cf4 "9"\cf0 ,\cf4 "A"\cf0 ,\cf4 "C"\cf0 ,\cf4 "I"\cf0 ,\cf4 "M"\cf0 ,\cf4 "P"\cf0 ,\cf4 "R"\cf0 ,\cf4 "U"\cf0 \};\
+                    \cf3 int\cf0  element = 0;\
+                    leng = strlen(row[i]);\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 for\cf0 (\cf3 int\cf0  i =0 ; i <leng;i ++) \{\
+                        space[i]= ' ';\
+                        \
+                    \}\
+                    \cf3 if\cf0 (strncmp(dats, space, leng) == 0)\{\
+                        leng = 0;\
+                    \}\
+                    \cf3 if\cf0 (leng == 0)\{\
+                        row[i] = \cf4 "9"\cf0 ;\
+                        leng = 1;\
+                        \
+                    \}\
+                    \cf3 else\cf0 \{\
+                        \cf3 if\cf0 (leng > 1)\{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                        \cf3 for\cf0 (\cf3 int\cf0  p = 0; p < 16;p++)\{\
+                            \cf3 if\cf0 (strncmp(row[i], conts[p], 1) == 0) \{\
+                                element = 1;\
+                            \}\
+                        \}\
+                        \cf3 if\cf0 (element != 1) \{\
+                            \cf3 return\cf0  2;\
+                        \}\
+                    \}\
+                \}\
+                \cf3 else\cf0  \cf3 if\cf0 (strlen(head) == 3 && strncmp(head, \cf4 "Slp"\cf0 , 3)==0) \{\
+                    \cf3 char\cf0 * oldData = (\cf3 char\cf0 *)malloc(\cf3 sizeof\cf0 (\cf3 char\cf0 )*50);\
+                    \cf3 int\cf0  boo = 0;\
+                    \cf3 int\cf0  stop =0;\
+                    \cf3 double\cf0  twicedasta;\
+                    \cf3 char\cf0  space[leng];\
+                    \cf3 for\cf0 (\cf3 int\cf0  i = 0 ; i <leng;i ++)\{\
+                        space[i] = ' ';\
+                        \cf3 if\cf0 (dats[i]== '.') \{\
+                            stop += 1;\
+                        \}\
+                        \
+                    \}\
+                \
+        \cf3 if\cf0 (strncmp(dats,space, leng)==0)\{\
+            leng =0;\
+        \}\
+            \cf3 int\cf0  noValues =0;\
+        \cf3 if\cf0 (leng != 1) \{\
+            \cf3 for\cf0 ( noValues = 0; noValues < leng; noValues++) \{\
+                \cf3 char\cf0  ch = dats[noValues];\
+                \cf3 if\cf0 (ch!= '0') \{\
+                    \cf3 break\cf0 ;\
+                \}\
+            \}\
+        \}\
+        \cf3 if\cf0 (dats[0]== '.')\{\
+            oldData[0] = '0';\
+            boo =1;\
+            \cf3 for\cf0 (\cf3 int\cf0  p =0;p< leng;p++)\{\
+                oldData[p+1] = dats[p];\
+            \}\
+            oldData[leng+ 1] = '\\0';\
+            \
+        \}\
+        \cf3 if\cf0 (leng ==0) \{\
+            row[i] = \cf4 "9999.9"\cf0 ;\
+            leng =5;\
+        \}\
+        \cf3 else\cf0 \{\
+            \cf3 if\cf0 (leng-stop > 5) \{\
+                \cf3 return\cf0  2;\
+            \}\
+            \
+            sprintf(strings,\cf4 "%f"\cf0 , doubleDat );\
+            \cf3 if\cf0 ( (boo ==1 && strncmp(oldData, strings, leng) != 0) || (boo == 0 && strncmp (dats, strings, leng) != 0 )) \{\
+                \cf3 return\cf0  2;\
+            \}\
+        \}\
+        row[i] = (\cf3 double\cf0 *)malloc(\cf3 sizeof\cf0 (\cf3 double\cf0 ));\
+        *((\cf3 double\cf0 *)row[i]) = doubleDat;\
+               \
+                \}\
+    \cf3 else\cf0  \cf3 if\cf0 (strlen(head) == 5 && strncmp(head, \cf4 "Slp Q"\cf0 , 5) == 0) \{\
+        leng = strlen(dats);\
+        \cf3 if\cf0 (strncmp(row[i], \cf4 "8"\cf0 , 1)==0) \{\
+            \cf3 return\cf0  2;\
+        \}\
+        \cf3 char\cf0  space[leng];\
+        \cf3 for\cf0 (\cf3 int\cf0  j =0;j<leng;j++) \{\
+            space[j]= ' ';\
+            \
+        \}\
+        \cf3 if\cf0 (strncmp(dats, space, leng)==0) \{\
+            leng = 0;\
+        \}\
+        \cf3 if\cf0 (leng == 0) \{\
+            row[i] = \cf4 "9"\cf0 ;\
+            leng = 1;\
+        \}\
+        \cf3 else\cf0 \{\
+            \cf3 if\cf0 (leng > 1)\{\
+                \
+                \cf3 return\cf0  2;\
+            \}\
+            newData = atoi((\cf3 char\cf0 *)row[i]);\
+            sprintf(strings, \cf4 "%d"\cf0 , newData);\
+            newlength = strlen(strings);\
+            \cf3 if\cf0 (leng != newlength)\{\
+                \cf3 return\cf0  2;\
+            \}\
+        \}\
+        row[i] = (\cf3 int\cf0  *) malloc(\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+        *((\cf3 int\cf0 *) row[i]) = newData;\
+    \}\
+    \
+    \cf3 else\cf0  \cf3 if\cf0 (strncmp(head, \cf4 "RHx"\cf0 , 3) == 0) \{\
+        leng = strlen(dats);\
+        \cf3 char\cf0  space[leng];\
+        \cf3 for\cf0 (\cf3 long\cf0  i=0;i<leng;i++)\{\
+            space[i]= ' ';\
+            \
+        \}\
+        \cf3 if\cf0 (strncmp(dats, space, leng) == 0) \{\
+            leng =0 ;\
+        \}\
+    \
+        \cf3 if\cf0 (leng != 1) \{\
+            \cf3 for\cf0 (\cf3 int\cf0   nonValue=0;nonValue < leng; nonValue++)\{\
+                \cf3 char\cf0  ch = dats[nonValue];\
+                \cf3 if\cf0 (ch != '\\0')\{\
+                    \cf3 break\cf0 ;\
+                \}\
+            \}\
+            \
+        \}\
+        \cf3 if\cf0 (leng == 0) \{\
+            row[i] = \cf4 "999"\cf0 ;\
+            leng =3;\
+        \}\
+        \cf3 else\cf0 \{\
+            \cf3 if\cf0 (leng > 3) \{\
+                \cf3 return\cf0  2;\
+            \}\
+            \cf3 int\cf0  nonValue = 0;\
+            newData = atoi(row[i]);\
+            sprintf(strings, \cf4 "%d"\cf0 , newData);\
+            newlength = strlen (strings);\
+            \cf3 if\cf0 (leng != newlength+ nonValue)\{\
+                \cf3 return\cf0  2;\
+            \}\
+        \}\
+        row[i] = (\cf3 int\cf0  *) malloc(\cf3 sizeof\cf0 (\cf3 int\cf0 ));\
+        *((\cf3 int\cf0 *) row[i]) = newData;\
+        \
+    \}\
+    \cf3 else\cf0  \cf3 if\cf0  (strncmp(head, \cf4 "QCP"\cf0 , 3) ==0 )\
+    \{\
+        leng = strlen(row[i]);\
+        \cf3 if\cf0 (leng > 4)\
+        \{\
+            \cf3 return\cf0  2;\
+        \}\
+    \}\
+    \cf3 else\cf0 \
+    \{\
+        \cf3 return\cf0  3;\
+    \}\
+            \}\
+        \}\
+    \cf3 return\cf0  0;\
+\}\
+}
